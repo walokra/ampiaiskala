@@ -13,57 +13,98 @@ Page {
         PageHeader { id: header; title: constants.appName; }
 
         PullDownMenu {
-                    id: pullDownMenu;
+            id: pullDownMenu;
 
-                    SearchField {
-                        width: parent.width
-
-                        font.pixelSize: constants.fontSizeSmall;
-                        font.bold: false;
-                        placeholderText: qsTr("Hae syöte...");
-
-                        onTextChanged: if (feedModel.feedName) feedModel.feedName = ""
-                        Keys.onEnterPressed: { feedModel.getFeed(text) }
-                        Keys.onReturnPressed: { feedModel.getFeed(text) }
-                    }
+            MenuItem {
+                text: qsTr("Refresh")
+                onClicked: {
+                    feedModel.refresh();
+                }
+            }
         }
 
         SilicaListView {
             id: listView
 
-            anchors.fill: parent
+            anchors { top: header.bottom; left: parent.left; right: parent.right; bottom: parent.bottom; }
+            anchors.margins: constants.paddingSmall;
+
             cacheBuffer: 4000
 
             ViewPlaceholder {
-                property bool busy: feedModel.status === XmlListModel.Loading
-                property string error: feedModel.status === XmlListModel.Error ? feedModel.errorString() : ""
-
-                enabled: !listView.count
-                text: busy ? qsTr("Loading...") : error ? qsTr("Error") : qsTr("No items in feed")
+                enabled: sourcesModel.count > 0 &&
+                         ! feedModel.busy &&
+                         feedModel.count === 0
+                text: qsTr("Pull down to refresh.")
             }
 
-            model: FeedModel {
-                id: feedModel
-                function getFeed(text) {
-                    feedName = ""
-                    feedName = text
-                    reload()
-                }
-            }
+            model: feedModel
 
-            delegate: FeedDelegate {
-                id: delegate
-                title: model.title
-                updated: model.updated && model.updated != "0000-00-00" ? model.updated : qsTr("No date")
-                link: model.link
+            delegate: ListItem {
+                id: feedItem
 
-                onClicked: {
-                    console.log("item clicked!")
+                opacity: feedModel.busy ? 0.2 : 1
+                enabled: ! feedModel.busy
+                clip: true
+
+                width: listView.width
+
+                Column {
+                    id: column
+                    spacing: constants.paddingSmall
+                    width: parent.width
+
+                    Label {
+                        id: titleLbl
+                        width: parent.width
+                        font.pixelSize: constants.fontSizeSmall
+                        color: constants.colorPrimary
+                        textFormat: Text.PlainText
+                        elide: Text.ElideRight
+                        text: title
+
+                        MouseArea {
+                            enabled: link !== ""
+                            anchors.fill: parent
+                            onClicked: {
+                                Qt.openUrlExternally(link);
+                            }
+                        }
+                    }
+
+                    Label {
+                        id: updatedLbl
+                        width: parent.width
+                        font.pixelSize: constants.fontSizeXXSmall
+                        color: constants.colorHighlight
+                        textFormat: Text.PlainText
+                        elide: Text.ElideRight
+                        text: updated
+                    }
                 }
             }
 
             VerticalScrollDecorator { }
         }
+    }
+
+    BusyIndicator {
+        anchors.centerIn: parent
+        running: feedModel.busy
+        size: BusyIndicatorSize.Large
+    }
+
+    Label {
+        visible: feedModel.busy
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+        anchors.margins: Theme.paddingMedium
+        horizontalAlignment: Text.AlignHCenter
+        font.pixelSize: Theme.fontSizeMedium
+        color: Theme.secondaryColor
+        truncationMode: TruncationMode.Fade
+        text: feedModel.currentlyLoading
     }
 
 }

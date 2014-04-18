@@ -5,18 +5,23 @@ DEFINES += APP_VERSION=\\\"$$VERSION\\\"
 DEFINES += APP_RELEASE=\\\"$$RELEASE\\\"
 
 CONFIG += sailfishapp
+QT += xml
 
-SOURCES += main.cpp
+SOURCES += \
+    main.cpp \
+    src/feedloader.cpp
+
+HEADERS += \
+    src/feedloader.h
 
 OTHER_FILES = \
-    rpm/harbour-ampiaiskala.spec \
     rpm/harbour-ampiaiskala.yaml \
     qml/MainPage.qml \
     qml/Constants.qml \
     qml/Settings.qml \
     qml/main.qml \
-    qml/Feed.qml \
-    qml/FeedDelegate.qml \
-    qml/FeedModel.qml
+    qml/FeedModel.qml \
+    qml/SourcesModel.qml \
+    qml/AtomModel.qml
 
 INCLUDEPATH += $$PWD
