@@ -12,23 +12,23 @@ Name:       harbour-ampiaiskala
 %{!?qtc_qmake5:%define qtc_qmake5 %qmake5}
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
-Summary:    Ampparit.com uutislukija Sailfish OS:lle
+Summary:    Ampparit.com news feed reader for Sailfish OS.
 Version:    0.1
 Release:    1
 Group:      Qt/Qt
 License:    LICENSE
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  harbour-ampiaiskala.yaml
-Requires:   sailfishsilica-qt5 >= 0.10.9
+Requires:   sailfishsilica-qt5
 Requires:   qt5-qtdeclarative-import-xmllistmodel
-BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
+BuildRequires:  pkgconfig(sailfishapp)
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  desktop-file-utils
 
 %description
-Ampiaiskala on Ampparit.com uutislukija Sailfish OS:lle
+Ampiaiskala is a news feed reader for Ampparit.com's Atom feeds.
 
 %prep
 %setup -q -n %{name}-%{version}
