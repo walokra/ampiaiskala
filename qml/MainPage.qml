@@ -6,19 +6,35 @@ Page {
     id: mainPage
 
     SilicaFlickable {
-        id: flickable;
+        id: flickable
 
-        anchors.fill: parent;
+        anchors.fill: parent
 
-        PageHeader { id: header; title: constants.appName; }
+        PageHeader { id: header; title: constants.appName }
 
         PullDownMenu {
-            id: pullDownMenu;
+            id: pullDownMenu
+
+            MenuItem {
+                id: aboutMenu
+                text: qsTr("About")
+                onClicked: {
+                    pageStack.push(aboutPage)
+                }
+            }
+
+            MenuItem {
+                id: feedsMenu
+                text: qsTr("Feeds")
+                onClicked: {
+                    pageStack.push(feedsPage)
+                }
+            }
 
             MenuItem {
                 text: qsTr("Refresh")
                 onClicked: {
-                    feedModel.refresh();
+                    feedModel.refresh()
                 }
             }
         }
@@ -32,25 +48,22 @@ Page {
             cacheBuffer: 4000
 
             ViewPlaceholder {
-                enabled: sourcesModel.count > 0 &&
-                         ! feedModel.busy &&
-                         feedModel.count === 0
+                enabled: sourcesModel.count > 0 && !feedModel.busy && feedModel.count === 0
                 text: qsTr("Pull down to refresh.")
             }
 
             model: feedModel
 
-            delegate: ListItem {
+            delegate: Row {
                 id: feedItem
 
                 opacity: feedModel.busy ? 0.2 : 1
-                enabled: ! feedModel.busy
+                enabled: !feedModel.busy
                 clip: true
 
                 width: listView.width
 
                 Column {
-                    id: column
                     spacing: constants.paddingSmall
                     width: parent.width
 
@@ -60,7 +73,8 @@ Page {
                         font.pixelSize: constants.fontSizeSmall
                         color: constants.colorPrimary
                         textFormat: Text.PlainText
-                        elide: Text.ElideRight
+                        wrapMode: Text.Wrap;
+                        //elide: Text.ElideRight
                         text: title
 
                         MouseArea {
@@ -84,7 +98,7 @@ Page {
                 }
             }
 
-            VerticalScrollDecorator { }
+            VerticalScrollDecorator { flickable: flickable }
         }
     }
 

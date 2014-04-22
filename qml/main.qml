@@ -37,6 +37,10 @@ ApplicationWindow
         MainPage { }
     }
 
+    AboutPage { id: aboutPage; }
+
+    FeedsPage { id: feedsPage; }
+
     Settings { id: settings }
 
     Constants { id: constants }

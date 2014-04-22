@@ -25,8 +25,7 @@ void FeedLoader::setSource(const QUrl& source) {
     emit dataChanged();
 
     QNetworkRequest req(source);
-    req.setRawHeader("User-Agent", QString("Ampiaiskala/%1 (Sailfish OS)")
-                     .arg(APP_VERSION).toUtf8());
+    req.setRawHeader("User-Agent", QString("Ampiaiskala/%1 (Sailfish OS)").arg(APP_VERSION).toUtf8());
 
     qDebug() << "Requesting " << source << " as " << QString("Ampiaiskala/%1 (Sailfish OS)").arg(APP_VERSION).toUtf8();
 

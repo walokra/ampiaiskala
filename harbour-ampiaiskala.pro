@@ -22,6 +22,8 @@ OTHER_FILES = \
     qml/main.qml \
     qml/FeedModel.qml \
     qml/SourcesModel.qml \
-    qml/AtomModel.qml
+    qml/AtomModel.qml \
+    qml/FeedsPage.qml \
+    qml/AboutPage.qml
 
 INCLUDEPATH += $$PWD
