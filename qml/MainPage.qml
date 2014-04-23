@@ -5,6 +5,18 @@ import QtQuick.XmlListModel 2.0
 Page {
     id: mainPage
 
+    Connections {
+        target: coverAdaptor
+
+        onRefresh: {
+            feedModel.refresh();
+        }
+
+        onAbort: {
+            feedModel.abort();
+        }
+    }
+
     SilicaFlickable {
         id: flickable
 
@@ -54,7 +66,7 @@ Page {
 
             model: feedModel
 
-            delegate: Row {
+            delegate: Column {
                 id: feedItem
 
                 opacity: feedModel.busy ? 0.2 : 1
@@ -62,38 +74,93 @@ Page {
                 clip: true
 
                 width: listView.width
+                spacing: constants.paddingSmall
 
-                Column {
-                    spacing: constants.paddingSmall
+                Label {
+                    id: titleLbl
                     width: parent.width
+                    font.pixelSize: constants.fontSizeSmall
+                    color: constants.colorPrimary
+                    textFormat: Text.PlainText
+                    wrapMode: Text.Wrap;
+                    //elide: Text.ElideRight
+                    text: title
 
-                    Label {
-                        id: titleLbl
-                        width: parent.width
-                        font.pixelSize: constants.fontSizeSmall
-                        color: constants.colorPrimary
-                        textFormat: Text.PlainText
-                        wrapMode: Text.Wrap;
-                        //elide: Text.ElideRight
-                        text: title
-
-                        MouseArea {
-                            enabled: link !== ""
-                            anchors.fill: parent
-                            onClicked: {
-                                Qt.openUrlExternally(link);
+                    MouseArea {
+                        enabled: link !== ""
+                        anchors.fill: parent
+                        onClicked: {
+                            //Qt.openUrlExternally(link);
+                            var props = {
+                                "url": link
                             }
+                            pageStack.push(Qt.resolvedUrl("WebPage.qml"), props);
                         }
                     }
+                }
 
-                    Label {
-                        id: updatedLbl
-                        width: parent.width
-                        font.pixelSize: constants.fontSizeXXSmall
-                        color: constants.colorHighlight
-                        textFormat: Text.PlainText
-                        elide: Text.ElideRight
-                        text: updated
+                Label {
+                    id: updatedLbl
+                    width: parent.width
+                    font.pixelSize: constants.fontSizeXXSmall
+                    color: constants.colorHighlight
+                    textFormat: Text.PlainText
+                    text: "(" + Format.formatDate(updated, Formatter.DurationElapsed) + ")"
+                }
+
+                Separator {
+                    anchors { left: parent.left; right: parent.right; }
+                    color: constants.colorSecondary;
+                }
+            }
+
+            // Timer for top/bottom buttons
+            Timer {
+                id: idle;
+                property bool moving: listView.moving || listView.dragging || listView.flicking;
+                property bool menuOpen: pullDownMenu.active;
+                onMovingChanged: if (!moving && !menuOpen) restart();
+                interval: listView.atYBeginning || listView.atYEnd ? 300 : 2000;
+            }
+
+            // to top button
+            Rectangle {
+                visible: opacity > 0;
+                width: 64;
+                height: 64;
+                anchors { top: parent.top; right: parent.right; margins: Theme.paddingLarge; }
+                radius: 75;
+                color: Theme.highlightBackgroundColor;
+                opacity: (idle.moving || idle.running) && !idle.menuOpen ? 1 : 0;
+                Behavior on opacity { FadeAnimation { duration: 300; } }
+
+                IconButton {
+                    anchors.centerIn: parent;
+                    icon.source: "image://theme/icon-l-up";
+                    onClicked: {
+                        listView.cancelFlick();
+                        listView.scrollToTop();
+                    }
+                }
+            }
+
+            // to bottom button
+            Rectangle {
+                visible: opacity > 0;
+                width: 64;
+                height: 64;
+                anchors { bottom: parent.bottom; right: parent.right; margins: constants.paddingLarge; }
+                radius: 75;
+                color: Theme.highlightBackgroundColor;
+                opacity: (idle.moving || idle.running) && !idle.menuOpen ? 1 : 0;
+                Behavior on opacity { FadeAnimation { duration: 300; } }
+
+                IconButton {
+                    anchors.centerIn: parent;
+                    icon.source: "image://theme/icon-l-down";
+                    onClicked: {
+                        listView.cancelFlick();
+                        listView.scrollToBottom();
                     }
                 }
             }

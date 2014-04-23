@@ -100,6 +100,14 @@ ListModel {
         lastRefresh = new Date();
     }
 
+    /* Aborts loading.
+     */
+    function abort() {
+        _sourcesQueue = [];
+        _itemLoader.stop();
+        busy = false;
+    }
+
     /*
      * Takes the next source from the sources queue and loads it.
      */

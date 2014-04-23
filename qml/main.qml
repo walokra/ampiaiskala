@@ -31,6 +31,14 @@ ApplicationWindow
     }
 
     initialPage: mainPageComponent
+    cover: Qt.resolvedUrl("CoverPage.qml")
+
+    QtObject {
+        id: coverAdaptor
+
+        signal refresh
+        signal abort
+    }
 
     Component {
         id: mainPageComponent
