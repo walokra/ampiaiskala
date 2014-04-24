@@ -75,7 +75,7 @@ ListModel {
 
     property AtomModel _atomModel: AtomModel {
         onStatusChanged: {
-            console.log("AtomModel.status = " + status);
+            //console.log("AtomModel.status = " + status);
 
             if (status === XmlListModel.Error) {
                 _handleError(errorString());

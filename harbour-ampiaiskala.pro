@@ -16,6 +16,8 @@ HEADERS += \
 
 OTHER_FILES = \
     rpm/harbour-ampiaiskala.yaml \
+    rpm/harbour-ampiaiskala.changes \
+    translations/*.ts \
     qml/MainPage.qml \
     qml/Constants.qml \
     qml/Settings.qml \
@@ -26,6 +28,12 @@ OTHER_FILES = \
     qml/FeedsPage.qml \
     qml/AboutPage.qml \
     qml/WebPage.qml \
-    qml/CoverPage.qml
+    qml/CoverPage.qml \
+    qml/QuickScroll.qml
 
 INCLUDEPATH += $$PWD
+
+# to disable building translations every time, comment out the
+# following CONFIG line
+CONFIG += sailfishapp_i18n
+TRANSLATIONS += translations/ampiaiskala-fi.ts

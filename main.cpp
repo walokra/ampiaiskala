@@ -7,7 +7,7 @@
 #include <QQmlEngine>
 #include <QGuiApplication>
 #include <QQmlContext>
-#include <QQuickView>
+#include <QtQml>
 
 #include <sailfishapp.h>
 

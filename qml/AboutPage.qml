@@ -35,7 +35,7 @@ Page {
                     width: parent.width;
                     wrapMode: Text.Wrap;
                     font.pixelSize: constants.fontSizeMedium;
-                    text: qsTr("Ampiaiskala is a feed reader for Ampparit.com news feeds.")
+                    text: qsTr("Ampiaiskala is a news feed reader for Ampparit.com news portal. Ampiaiskala is open source software and licensed under the terms of the MIT license.")
                 }
             }
 

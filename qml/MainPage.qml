@@ -61,7 +61,7 @@ Page {
 
             ViewPlaceholder {
                 enabled: sourcesModel.count > 0 && !feedModel.busy && feedModel.count === 0
-                text: qsTr("Pull down to refresh.")
+                text: qsTr("Pull down to refresh")
             }
 
             model: feedModel
@@ -114,55 +114,9 @@ Page {
                 }
             }
 
-            // Timer for top/bottom buttons
-            Timer {
-                id: idle;
-                property bool moving: listView.moving || listView.dragging || listView.flicking;
-                property bool menuOpen: pullDownMenu.active;
-                onMovingChanged: if (!moving && !menuOpen) restart();
-                interval: listView.atYBeginning || listView.atYEnd ? 300 : 2000;
-            }
-
-            // to top button
-            Rectangle {
-                visible: opacity > 0;
-                width: 64;
-                height: 64;
-                anchors { top: parent.top; right: parent.right; margins: Theme.paddingLarge; }
-                radius: 75;
-                color: Theme.highlightBackgroundColor;
-                opacity: (idle.moving || idle.running) && !idle.menuOpen ? 1 : 0;
-                Behavior on opacity { FadeAnimation { duration: 300; } }
-
-                IconButton {
-                    anchors.centerIn: parent;
-                    icon.source: "image://theme/icon-l-up";
-                    onClicked: {
-                        listView.cancelFlick();
-                        listView.scrollToTop();
-                    }
-                }
-            }
-
-            // to bottom button
-            Rectangle {
-                visible: opacity > 0;
-                width: 64;
-                height: 64;
-                anchors { bottom: parent.bottom; right: parent.right; margins: constants.paddingLarge; }
-                radius: 75;
-                color: Theme.highlightBackgroundColor;
-                opacity: (idle.moving || idle.running) && !idle.menuOpen ? 1 : 0;
-                Behavior on opacity { FadeAnimation { duration: 300; } }
-
-                IconButton {
-                    anchors.centerIn: parent;
-                    icon.source: "image://theme/icon-l-down";
-                    onClicked: {
-                        listView.cancelFlick();
-                        listView.scrollToBottom();
-                    }
-                }
+            QuickScroll {
+                flickable: listView
+                pullDownMenu: pullDownMenu
             }
 
             VerticalScrollDecorator { flickable: flickable }
