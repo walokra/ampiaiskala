@@ -36,4 +36,4 @@ INCLUDEPATH += $$PWD
 # to disable building translations every time, comment out the
 # following CONFIG line
 CONFIG += sailfishapp_i18n
-TRANSLATIONS += translations/ampiaiskala-fi.ts
+TRANSLATIONS += translations/harbour-ampiaiskala-fi.ts
