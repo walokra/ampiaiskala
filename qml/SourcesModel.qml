@@ -5,7 +5,7 @@ ListModel {
     signal modelChanged
 
     function addSource(id) {
-        console.log("addSource: " + id)
+        //console.log("addSource: " + id)
 
         switch (id) {
             case settings.feeds_kaikki_id:
@@ -61,18 +61,5 @@ ListModel {
 
         modelChanged();
     }
-
-    /*
-    function removeSource(id) {
-        for (var i = 0; i < count; i++) {
-            if (get(i).id === id) {
-                remove(i);
-                break;
-            }
-        }
-
-        modelChanged();
-    }
-    */
 
 }

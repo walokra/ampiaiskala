@@ -101,16 +101,6 @@ QtObject {
     */
 
     function loadFeedSettings() {
-        //console.log("Load settings...");
-        /*
-        var results = Storage.readFeedSettings();
-        for (var s in results) {
-            if (settings.hasOwnProperty(s)) {
-                settings[s] = results[s];
-            }
-        }
-        settingsLoaded();
-        */
         feeds_basic_selected = Storage.readSetting("feeds_basic_selected");
         settingsLoaded();
     }

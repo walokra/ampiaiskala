@@ -15,7 +15,7 @@ Name:       harbour-ampiaiskala
 Summary:    Ampparit.com news feed reader for Sailfish OS.
 Version:    0.1
 Release:    1
-Group:      Qt/Qt
+Group:      Applications/Internet
 License:    LICENSE
 URL:        http://ruleoftech.com/lab/ampiaiskala
 Source0:    %{name}-%{version}.tar.bz2

@@ -89,12 +89,12 @@ ListModel {
      * Clears and reloads the model from the current sources.
      */
     function refresh() {
-        console.log("Refreshing model");
+        //console.log("Refreshing model");
         busy = true;
         clear();
-        for (var i = 0; i < sources.length; i++) {
-            console.log("Source: " + sources[i].url);
-        }
+        //for (var i = 0; i < sources.length; i++) {
+        //    console.log("Source: " + sources[i].url);
+        //}
         _sourcesQueue = sources;
         _loadNext();
         lastRefresh = new Date();

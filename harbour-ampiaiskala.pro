@@ -15,6 +15,7 @@ HEADERS += \
     src/feedloader.h
 
 OTHER_FILES = \
+    rpm/harbour-ampiaiskala.spec \
     rpm/harbour-ampiaiskala.yaml \
     rpm/harbour-ampiaiskala.changes \
     translations/*.ts \
@@ -29,8 +30,7 @@ OTHER_FILES = \
     qml/FeedsPage.qml \
     qml/AboutPage.qml \
     qml/WebPage.qml \
-    qml/CoverPage.qml \
-    qml/QuickScroll.qml
+    qml/CoverPage.qml
 
 INCLUDEPATH += $$PWD
 

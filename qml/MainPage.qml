@@ -83,14 +83,12 @@ Page {
                     color: constants.colorPrimary
                     textFormat: Text.PlainText
                     wrapMode: Text.Wrap;
-                    //elide: Text.ElideRight
                     text: title
 
                     MouseArea {
                         enabled: link !== ""
                         anchors.fill: parent
                         onClicked: {
-                            //Qt.openUrlExternally(link);
                             var props = {
                                 "url": link
                             }
@@ -114,9 +112,55 @@ Page {
                 }
             }
 
-            QuickScroll {
-                flickable: listView
-                pullDownMenu: pullDownMenu
+            // Timer for top/bottom buttons
+            Timer {
+                id: idle;
+                property bool moving: listView.moving || listView.dragging || listView.flicking;
+                property bool menuOpen: pullDownMenu.active;
+                onMovingChanged: if (!moving && !menuOpen) restart();
+                interval: listView.atYBeginning || listView.atYEnd ? 300 : 2000;
+            }
+
+            // to top button
+            Rectangle {
+                visible: opacity > 0;
+                width: 64;
+                height: 64;
+                anchors { top: listView.top; right: listView.right; margins: Theme.paddingLarge; }
+                radius: 75;
+                color: Theme.highlightBackgroundColor;
+                opacity: (idle.moving || idle.running) && !idle.menuOpen ? 1 : 0;
+                Behavior on opacity { FadeAnimation { duration: 300; } }
+
+                IconButton {
+                    anchors.centerIn: parent;
+                    icon.source: "image://theme/icon-l-up";
+                    onClicked: {
+                        listView.cancelFlick();
+                        listView.scrollToTop();
+                    }
+                }
+            }
+
+            // to bottom button
+            Rectangle {
+                visible: opacity > 0;
+                width: 64;
+                height: 64;
+                anchors { bottom: listView.bottom; right: listView.right; margins: constants.paddingLarge; }
+                radius: 75;
+                color: Theme.highlightBackgroundColor;
+                opacity: (idle.moving || idle.running) && !idle.menuOpen ? 1 : 0;
+                Behavior on opacity { FadeAnimation { duration: 300; } }
+
+                IconButton {
+                    anchors.centerIn: parent;
+                    icon.source: "image://theme/icon-l-down";
+                    onClicked: {
+                        listView.cancelFlick();
+                        listView.scrollToBottom();
+                    }
+                }
             }
 
             VerticalScrollDecorator { flickable: flickable }

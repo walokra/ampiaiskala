@@ -34,7 +34,7 @@ Dialog {
                 text: qsTr("All")
                 checked: selected === settings.feeds_kaikki_id
                 onCheckedChanged: {
-                    console.log("All: " + checked)
+                    //console.log("All: " + checked)
                     checked ? selected = settings.feeds_kaikki_id : selected = "";
                 }
             }
@@ -43,7 +43,7 @@ Dialog {
                 text: qsTr("News")
                 checked: selected === settings.feeds_uutiset_id
                 onCheckedChanged: {
-                    console.log("News: " + checked)
+                    //console.log("News: " + checked)
                     checked ? selected = settings.feeds_uutiset_id : selected = "";
                 }
             }
@@ -52,7 +52,7 @@ Dialog {
                 text: qsTr("News & entertainment")
                 checked: selected === settings.feeds_uutiset_viihde_id
                 onCheckedChanged: {
-                    console.log("News & entertainment: " + checked)
+                    //console.log("News & entertainment: " + checked)
                     checked ? selected = settings.feeds_uutiset_viihde_id : selected = "";
                 }
             }
@@ -61,7 +61,7 @@ Dialog {
                 text: qsTr("News & sports")
                 checked: selected === settings.feeds_uutiset_urheilu_id
                 onCheckedChanged: {
-                    console.log("News & sports: " + checked)
+                    //console.log("News & sports: " + checked)
                     checked ? selected = settings.feeds_uutiset_urheilu_id : selected = "";
                 }
             }
@@ -70,7 +70,7 @@ Dialog {
                 text: qsTr("Entertainment news")
                 checked: selected === settings.feeds_uutiset_viihde_id
                 onCheckedChanged: {
-                    console.log("Entertainment news: " + checked)
+                    //console.log("Entertainment news: " + checked)
                     checked ? selected = settings.feeds_uutiset_viihde_id : selected = "";
                 }
             }
@@ -79,7 +79,7 @@ Dialog {
                 text: qsTr("Sports news")
                 checked: selected === settings.feeds_urheilu_id
                 onCheckedChanged: {
-                    console.log("Sports news: " + checked)
+                    //console.log("Sports news: " + checked)
                     checked ? selected = settings.feeds_urheilu_id : selected = "";
                 }
             }
@@ -88,7 +88,7 @@ Dialog {
                 text: qsTr("Province news")
                 checked: selected === settings.feeds_maakunnat_id
                 onCheckedChanged: {
-                    console.log("Province news: " + checked)
+                    //console.log("Province news: " + checked)
                     checked ? selected = settings.feeds_maakunnat_id : selected = "";
                 }
             }
@@ -98,7 +98,7 @@ Dialog {
     }
 
     onAccepted: {
-        console.log("onAccepted! selected: " + selected)
+        //console.log("onAccepted! selected: " + selected)
         sourcesModel.clear()
         settings.feeds_basic_selected = selected;
         sourcesModel.addSource(settings.feeds_basic_selected)

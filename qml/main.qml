@@ -22,7 +22,7 @@ ApplicationWindow
     Connections {
         target: settings;
         onSettingsLoaded: {
-            console.log("onSettingsLoaded")
+            //console.log("onSettingsLoaded")
             sourcesModel.addSource(settings.feeds_basic_selected)
         }
     }
