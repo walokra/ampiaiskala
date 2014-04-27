@@ -2,7 +2,7 @@ import QtQuick 2.1
 import Sailfish.Silica 1.0
 
 Item {
-    property SilicaListView flickable: parent
+    property SilicaListView flickable: flickable
     property PullDownMenu pullDownMenu: pullDownMenu
 
     // Timer for top/bottom buttons

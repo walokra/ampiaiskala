@@ -18,6 +18,7 @@ OTHER_FILES = \
     rpm/harbour-ampiaiskala.yaml \
     rpm/harbour-ampiaiskala.changes \
     translations/*.ts \
+    qml/components/storage.js \
     qml/MainPage.qml \
     qml/Constants.qml \
     qml/Settings.qml \

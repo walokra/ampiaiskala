@@ -4,31 +4,68 @@ ListModel {
 
     signal modelChanged
 
-    function addSource(name, url) {
-        append({
-                   "sourceId": name,
-                   "name": name,
-                   "url": url
-               });
+    function addSource(id) {
+        console.log("addSource: " + id)
 
-        modelChanged();
-    }
-
-    function changeSource(sourceId, name, url) {
-        for (var i = 0; i < count; i++) {
-            if (get(i).sourceId === sourceId) {
-                get(i).name = name;
-                get(i).url = url;
+        switch (id) {
+            case settings.feeds_kaikki_id:
+                append({
+                    "id": settings.feeds_kaikki_id,
+                    "name": settings.feeds_kaikki_name,
+                    "url": settings.feeds_kaikki_url
+                });
                 break;
-            }
+            case settings.feeds_uutiset_id:
+                append({
+                    "id": settings.feeds_uutiset_id,
+                    "name": settings.feeds_uutiset_name,
+                    "url": settings.feeds_uutiset_url
+                });
+                break;
+            case settings.feeds_uutiset_viihde_id:
+                append({
+                    "id": settings.feeds_uutiset_viihde_id,
+                    "name": settings.feeds_uutiset_viihde_name,
+                    "url": settings.feeds_uutiset_viihde_url
+                });
+                break;
+            case settings.feeds_uutiset_urheilu_id:
+                append({
+                    "id": settings.feeds_uutiset_urheilu_id,
+                    "name": settings.feeds_uutiset_urheilu_name,
+                    "url": settings.feeds_uutiset_urheilu_url
+                });
+                break;
+            case settings.feeds_viihde_id:
+                append({
+                    "id": settings.feeds_viihde_id,
+                    "name": settings.feeds_viihde_name,
+                    "url": settings.feeds_viihde_url
+                });
+                break;
+            case settings.feeds_urheilu_id:
+                append({
+                    "id": settings.feeds_urheilu_id,
+                    "name": settings.feeds_urheilu_name,
+                    "url": settings.feeds_urheilu_url
+                });
+                break;
+            case settings.feeds_maakunnat_id:
+                append({
+                    "id": settings.feeds_maakunnat_id,
+                    "name": settings.feeds_maakunnat_name,
+                    "url": settings.feeds_maakunnat_url
+                });
+                break;
         }
 
         modelChanged();
     }
 
-    function removeSource(sourceId) {
+    /*
+    function removeSource(id) {
         for (var i = 0; i < count; i++) {
-            if (get(i).sourceId === sourceId) {
+            if (get(i).id === id) {
                 remove(i);
                 break;
             }
@@ -36,15 +73,6 @@ ListModel {
 
         modelChanged();
     }
-
-    Component.onCompleted: {
-        append({
-                   "sourceId": "kaikki",
-                   "name": "kaikki",
-                   "url": "http://feeds.feedburner.com/ampparit-kaikki"
-               });
-
-        modelChanged();
-    }
+    */
 
 }

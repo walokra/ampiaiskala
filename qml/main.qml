@@ -4,23 +4,28 @@ import Sailfish.Silica 1.0
 ApplicationWindow
 {
     SourcesModel {
-            id: sourcesModel
+        id: sourcesModel
 
-            onModelChanged: {
-                var sources = [];
-                for (var i = 0; i < count; i++) {
-                    var data = {
-                        "name": get(i).name,
-                        "url": get(i).url
-                    };
-                    sources.push(data);
-                }
-                feedModel.sources = sources;
+        onModelChanged: {
+            var sources = [];
+            for (var i = 0; i < count; i++) {
+                var data = {
+                    "name": get(i).name,
+                    "url": get(i).url,
+                };
+                sources.push(data);
             }
-
-            Component.onCompleted: {
-            }
+            feedModel.sources = sources;
         }
+    }
+
+    Connections {
+        target: settings;
+        onSettingsLoaded: {
+            console.log("onSettingsLoaded")
+            sourcesModel.addSource(settings.feeds_basic_selected)
+        }
+    }
 
     FeedModel {
         id: feedModel
@@ -52,6 +57,8 @@ ApplicationWindow
     Settings { id: settings }
 
     Constants { id: constants }
+
+    Component.onCompleted: {
+        settings.loadFeedSettings();
+    }
 }
-
-

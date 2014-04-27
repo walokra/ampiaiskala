@@ -51,52 +51,52 @@
 <context>
     <name>FeedsPage</name>
     <message>
-        <location filename="../qml/FeedsPage.qml" line="16"/>
+        <location filename="../qml/FeedsPage.qml" line="18"/>
         <source>Feeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/FeedsPage.qml" line="17"/>
+        <location filename="../qml/FeedsPage.qml" line="19"/>
         <source>Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/FeedsPage.qml" line="29"/>
+        <location filename="../qml/FeedsPage.qml" line="31"/>
         <source>Basic feeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/FeedsPage.qml" line="32"/>
+        <location filename="../qml/FeedsPage.qml" line="34"/>
         <source>All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/FeedsPage.qml" line="44"/>
+        <location filename="../qml/FeedsPage.qml" line="43"/>
         <source>News</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/FeedsPage.qml" line="54"/>
+        <location filename="../qml/FeedsPage.qml" line="52"/>
         <source>News &amp; entertainment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/FeedsPage.qml" line="64"/>
+        <location filename="../qml/FeedsPage.qml" line="61"/>
         <source>News &amp; sports</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/FeedsPage.qml" line="74"/>
+        <location filename="../qml/FeedsPage.qml" line="70"/>
         <source>Entertainment news</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/FeedsPage.qml" line="84"/>
+        <location filename="../qml/FeedsPage.qml" line="79"/>
         <source>Sports news</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/FeedsPage.qml" line="94"/>
+        <location filename="../qml/FeedsPage.qml" line="88"/>
         <source>Province news</source>
         <translation type="unfinished"></translation>
     </message>

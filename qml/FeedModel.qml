@@ -115,8 +115,8 @@ ListModel {
         var queue = _sourcesQueue;
         if (queue.length > 0) {
             var source = queue.pop();
-            var url = source.url;
             var name = source.name;
+            var url = source.url;
 
             console.log("Now loading: " + name);
             currentlyLoading = name;

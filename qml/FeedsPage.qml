@@ -6,6 +6,8 @@ Dialog {
 
     allowedOrientations: Orientation.All
 
+    property string selected : "";
+
     SilicaFlickable {
         id: flickable
 
@@ -30,73 +32,64 @@ Dialog {
 
             TextSwitch {
                 text: qsTr("All")
-                checked: settings.feeds_kaikki
+                checked: selected === settings.feeds_kaikki_id
                 onCheckedChanged: {
                     console.log("All: " + checked)
-                    checked ? settings.feeds_kaikki = true : settings.feeds_kaikki = false;
-                    sourcesModel.clear()
-                    sourcesModel.addSource(settings.feeds_kaikki_id, settings.feeds_kaikki_url)
-                    //feedModel.refresh()
+                    checked ? selected = settings.feeds_kaikki_id : selected = "";
                 }
             }
 
             TextSwitch {
                 text: qsTr("News")
-                checked: settings.feeds_uutiset
+                checked: selected === settings.feeds_uutiset_id
                 onCheckedChanged: {
-                    checked ? settings.feeds_uutiset = true : settings.feeds_uutiset = false;
-                    sourcesModel.clear()
-                    sourcesModel.addSource(settings.feeds_uutiset_id, settings.feeds_uutiset_url)
+                    console.log("News: " + checked)
+                    checked ? selected = settings.feeds_uutiset_id : selected = "";
                 }
             }
 
             TextSwitch {
                 text: qsTr("News & entertainment")
-                checked: settings.feeds_uutiset_viihde
+                checked: selected === settings.feeds_uutiset_viihde_id
                 onCheckedChanged: {
-                    checked ? settings.feeds_uutiset_viihde = true : settings.feeds_uutiset_viihde = false;
-                    sourcesModel.clear()
-                    sourcesModel.addSource(settings.feeds_uutiset_viihde_id, settings.feeds_uutiset_viihde_url)
+                    console.log("News & entertainment: " + checked)
+                    checked ? selected = settings.feeds_uutiset_viihde_id : selected = "";
                 }
             }
 
             TextSwitch {
                 text: qsTr("News & sports")
-                checked: settings.feeds_uutiset_urheilu
+                checked: selected === settings.feeds_uutiset_urheilu_id
                 onCheckedChanged: {
-                    checked ? settings.feeds_uutiset_urheilu = true : settings.feeds_uutiset_urheilu = false;
-                    sourcesModel.clear()
-                    sourcesModel.addSource(settings.feeds_uutiset_urheilu_id, settings.feeds_uutiset_urheilu_url)
+                    console.log("News & sports: " + checked)
+                    checked ? selected = settings.feeds_uutiset_urheilu_id : selected = "";
                 }
             }
 
             TextSwitch {
                 text: qsTr("Entertainment news")
-                checked: settings.feeds_viihdeuutiset
+                checked: selected === settings.feeds_uutiset_viihde_id
                 onCheckedChanged: {
-                    checked ? settings.feeds_viihdeuutiset = true : settings.feeds_viihdeuutiset = false;
-                    sourcesModel.clear()
-                    sourcesModel.addSource(settings.feeds_viihdeuutiset_id, settings.feeds_viihdeuutiset_url)
+                    console.log("Entertainment news: " + checked)
+                    checked ? selected = settings.feeds_uutiset_viihde_id : selected = "";
                 }
             }
 
             TextSwitch {
                 text: qsTr("Sports news")
-                checked: settings.feeds_urheiluuutiset
+                checked: selected === settings.feeds_urheilu_id
                 onCheckedChanged: {
-                    checked ? settings.feeds_urheiluuutiset = true : settings.feeds_urheiluuutiset = false;
-                    sourcesModel.clear()
-                    sourcesModel.addSource(settings.feeds_urheiluuutiset_id, settings.feeds_urheiluuutiset_url)
+                    console.log("Sports news: " + checked)
+                    checked ? selected = settings.feeds_urheilu_id : selected = "";
                 }
             }
 
             TextSwitch {
                 text: qsTr("Province news")
-                checked: settings.feeds_maakuntauutiset
+                checked: selected === settings.feeds_maakunnat_id
                 onCheckedChanged: {
-                    checked ? settings.feeds_maakuntauutiset = true : settings.feeds_maakuntauutiset = false;
-                    sourcesModel.clear()
-                    sourcesModel.addSource(settings.feeds_maakunta_uutiset_id, settings.feeds_maakunta_uutiset_url)
+                    console.log("Province news: " + checked)
+                    checked ? selected = settings.feeds_maakunnat_id : selected = "";
                 }
             }
         }
@@ -105,7 +98,11 @@ Dialog {
     }
 
     onAccepted: {
-        console.log("onAccepted!")
+        console.log("onAccepted! selected: " + selected)
+        sourcesModel.clear()
+        settings.feeds_basic_selected = selected;
+        sourcesModel.addSource(settings.feeds_basic_selected)
+        settings.saveFeedSettings();
     }
 
     Component.onCompleted: {
