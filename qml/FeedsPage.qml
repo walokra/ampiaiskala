@@ -19,6 +19,8 @@ Dialog {
             acceptText: qsTr("Save")
         }
 
+        contentHeight: contentArea.height;
+
         Column {
             id: contentArea;
             anchors { top: header.bottom; left: parent.left; right: parent.right }
@@ -68,10 +70,10 @@ Dialog {
 
             TextSwitch {
                 text: qsTr("Entertainment news")
-                checked: selected === settings.feeds_uutiset_viihde_id
+                checked: selected === settings.feeds_viihde_id
                 onCheckedChanged: {
                     //console.log("Entertainment news: " + checked)
-                    checked ? selected = settings.feeds_uutiset_viihde_id : selected = "";
+                    checked ? selected = settings.feeds_viihde_id : selected = "";
                 }
             }
 

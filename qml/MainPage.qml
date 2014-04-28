@@ -58,6 +58,7 @@ Page {
             anchors.margins: constants.paddingSmall;
 
             cacheBuffer: 4000
+            pressDelay: 0
 
             ViewPlaceholder {
                 enabled: sourcesModel.count > 0 && !feedModel.busy && feedModel.count === 0
