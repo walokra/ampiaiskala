@@ -17,13 +17,11 @@ ApplicationWindow
             }
             feedModel.sources = sources;
         }
-    }
 
-    Connections {
-        target: settings;
-        onSettingsLoaded: {
-            //console.log("onSettingsLoaded")
-            sourcesModel.addSource(settings.feeds_basic_selected)
+        Component.onCompleted: {
+            if (count === 0) {
+                sourcesModel.addSource("kaikki", "http://feeds.feedburner.com/ampparit-kaikki")
+            }
         }
     }
 

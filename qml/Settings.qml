@@ -10,48 +10,34 @@ QtObject {
     property string feeds_basic_selected : "kaikki"
 
     // Ampparit.com feeds
-    property string feeds_kaikki_id : "kaikki"
-    property string feeds_kaikki_name : "Kaikki"
-    property string feeds_kaikki_url: "http://feeds.feedburner.com/ampparit-kaikki"
+    property var feeds_basic_news : [];
+    function createBasicFeeds() {
+        feeds_basic_news.push(["kaikki", "Kaikki", "http://feeds.feedburner.com/ampparit-kaikki"])
+        feeds_basic_news.push(["uutiset", "Uutiset", "http://feeds.feedburner.com/ampparit-uutiset"])
+        feeds_basic_news.push(["uutiset-viihde", "Uutiset ja viihde", "http://feeds.feedburner.com/ampparit-uutiset-viihde"])
+        feeds_basic_news.push(["uutiset-urheilu", "Uutiset ja urheilu", "http://feeds.feedburner.com/ampparit-uutiset-urheilu"])
+        feeds_basic_news.push(["viihde", "Viihdeuutiset", "http://feeds.feedburner.com/ampparit-viihde"])
+        feeds_basic_news.push(["urheilu", "Urheilu-uutiset", "http://feeds.feedburner.com/ampparit-urheilu"])
+        feeds_basic_news.push(["maakunnat", "Maakunta-uutiset", "http://feeds.feedburner.com/ampparit-maakunnat"])
+    }
 
-    property string feeds_uutiset_id : "uutiset"
-    property string feeds_uutiset_name : "Uutiset"
-    property string feeds_uutiset_url : "http://feeds.feedburner.com/ampparit-uutiset"
-
-    property string feeds_uutiset_viihde_id : "uutiset-viihde"
-    property string feeds_uutiset_viihde_name : "Uutiset ja viihde"
-    property string feeds_uutiset_viihde_url : "http://feeds.feedburner.com/ampparit-uutiset-viihde"
-
-    property string feeds_uutiset_urheilu_id : "uutiset-urheilu"
-    property string feeds_uutiset_urheilu_name : "Uutiset ja urheilu"
-    property string feeds_uutiset_urheilu_url : "http://feeds.feedburner.com/ampparit-uutiset-urheilu"
-
-    property string feeds_viihde_id : "viihde"
-    property string feeds_viihde_name : "Viihdeuutiset"
-    property string feeds_viihde_url : "http://feeds.feedburner.com/ampparit-viihde"
-
-    property string feeds_urheilu_id : "urheilu"
-    property string feeds_urheilu_name : "Urheiluu-utiset"
-    property string feeds_urheilu_url : "http://feeds.feedburner.com/ampparit-urheilu"
-
-    property string feeds_maakunnat_id : "maakunnat"
-    property string feeds_maakunnat_name : "Maakunta-uutiset"
-    property string feeds_maakunnat_url : "http://feeds.feedburner.com/ampparit-maakunnat"
+    // Tarkemmat uutissyötteet
+    property var feeds_specific_news : [];
+    function createSpecificFeeds() {
+        feeds_specific_news.push(["kotimaa", "Kotimaa",  "http://feeds.feedburner.com/ampparit-kotimaa"])
+        feeds_specific_news.push(["ulkomaat", "Ulkomaat",  "http://feeds.feedburner.com/ampparit-ulkomaat"])
+        feeds_specific_news.push(["talous", "Talous", "http://feeds.feedburner.com/ampparit-talous"])
+        feeds_specific_news.push(["it", "IT", "http://feeds.feedburner.com/ampparit-it"])
+        feeds_specific_news.push(["media", "Media", "http://feeds.feedburner.com/ampparit-media"])
+        feeds_specific_news.push(["politiikka", "Politiikka", "http://feeds.feedburner.com/ampparit-politiikka"])
+        feeds_specific_news.push(["kulttuuri", "Kulttuuri", "http://feeds.feedburner.com/ampparit-kulttuuri"])
+        feeds_specific_news.push(["terveys", "Terveys ja hyvinvointi", "http://feeds.feedburner.com/ampparit-terveys-ja-hyvinvointi"])
+        feeds_specific_news.push(["tiede", "Tiede ja tutkimus", "http://feeds.feedburner.com/ampparit-tiede-ja-tutkimus"])
+        feeds_specific_news.push(["luonto", "Luonto ja ympäristö", "http://feeds.feedburner.com/ampparit-luonto-ja-ymparisto"])
+        feeds_specific_news.push(["rikos", "Rikos ja rangaistus", "http://feeds.feedburner.com/ampparit-rikos-ja-rangaistus"])
+    }
 
     /*
-    Tarkemmat uutissyötteet
-        Kotimaa	http://feeds.feedburner.com/ampparit-kotimaa
-        Ulkomaat	http://feeds.feedburner.com/ampparit-ulkomaat
-        Talous	http://feeds.feedburner.com/ampparit-talous
-        IT	http://feeds.feedburner.com/ampparit-it
-        Media	http://feeds.feedburner.com/ampparit-media
-        Politiikka	http://feeds.feedburner.com/ampparit-politiikka
-        Kulttuuri	http://feeds.feedburner.com/ampparit-kulttuuri
-        Terveys ja hyvinvointi	http://feeds.feedburner.com/ampparit-terveys-ja-hyvinvointi
-        Tiede ja tutkimus	http://feeds.feedburner.com/ampparit-tiede-ja-tutkimus
-        Luonto ja ympäristö	http://feeds.feedburner.com/ampparit-luonto-ja-ymparisto
-        Rikos ja rangaistus	http://feeds.feedburner.com/ampparit-rikos-ja-rangaistus
-
     Tarkemmat viihdesyötteet
         Big Brother	http://feeds.feedburner.com/ampparit-big-brother
         Jutut ja juorut	http://feeds.feedburner.com/ampparit-jutut-ja-juorut
@@ -102,6 +88,7 @@ QtObject {
 
     function loadFeedSettings() {
         feeds_basic_selected = Storage.readSetting("feeds_basic_selected");
+
         settingsLoaded();
     }
 

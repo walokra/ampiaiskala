@@ -4,9 +4,14 @@ ListModel {
 
     signal modelChanged
 
-    function addSource(id) {
-        //console.log("addSource: " + id)
+    function addSource(name, url) {
+        console.log("addSource: " + name + ", " + url)
+        append({
+            "name": name,
+            "url": url
+        });
 
+        /*
         switch (id) {
             case settings.feeds_kaikki_id:
                 append({
@@ -58,6 +63,7 @@ ListModel {
                 });
                 break;
         }
+        */
 
         modelChanged();
     }

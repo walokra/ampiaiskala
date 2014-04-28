@@ -61,43 +61,29 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/FeedsPage.qml" line="31"/>
-        <source>Basic feeds</source>
+        <location filename="../qml/FeedsPage.qml" line="32"/>
+        <location filename="../qml/FeedsPage.qml" line="39"/>
+        <source>Basic feed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/FeedsPage.qml" line="34"/>
-        <source>All</source>
+        <location filename="../qml/FeedsPage.qml" line="62"/>
+        <source>Specific news feeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/FeedsPage.qml" line="43"/>
-        <source>News</source>
+        <location filename="../qml/FeedsPage.qml" line="71"/>
+        <source>Specific entertainment feeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/FeedsPage.qml" line="52"/>
-        <source>News &amp; entertainment</source>
+        <location filename="../qml/FeedsPage.qml" line="73"/>
+        <source>Specific sports feeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/FeedsPage.qml" line="61"/>
-        <source>News &amp; sports</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/FeedsPage.qml" line="70"/>
-        <source>Entertainment news</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/FeedsPage.qml" line="79"/>
-        <source>Sports news</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/FeedsPage.qml" line="88"/>
-        <source>Province news</source>
+        <location filename="../qml/FeedsPage.qml" line="75"/>
+        <source>Specific province feeds</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -119,7 +105,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/MainPage.qml" line="64"/>
+        <location filename="../qml/MainPage.qml" line="65"/>
         <source>Pull down to refresh</source>
         <translation type="unfinished"></translation>
     </message>
