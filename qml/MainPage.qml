@@ -31,7 +31,7 @@ Page {
                 id: aboutMenu
                 text: qsTr("About")
                 onClicked: {
-                    pageStack.push(aboutPage)
+                    pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
                 }
             }
 
@@ -39,7 +39,7 @@ Page {
                 id: feedsMenu
                 text: qsTr("Feeds")
                 onClicked: {
-                    pageStack.push(feedsPage)
+                    pageStack.push(Qt.resolvedUrl("FeedsPage.qml"))
                 }
             }
 
@@ -49,6 +49,12 @@ Page {
                     feedModel.refresh()
                 }
             }
+        }
+
+        // The delegate for each section header
+        Component {
+            id: sectionHeading
+            SectionHeader { text: section }
         }
 
         SilicaListView {
@@ -66,6 +72,10 @@ Page {
             }
 
             model: feedModel
+
+            section.property: "name"
+            section.criteria: ViewSection.FullString
+            section.delegate: sectionHeading
 
             delegate: Column {
                 id: feedItem

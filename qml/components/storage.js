@@ -40,7 +40,7 @@ function readFeedSettings() {
   Write setting to database.
 */
 function writeSetting(key, value) {
-    console.log("writeSetting(" + key + "=" + value + ")");
+    //console.debug("writeSetting(" + key + "=" + value + ")");
 
     if (value === true) {
         value = 'true';
@@ -60,7 +60,7 @@ function writeSetting(key, value) {
  Read given setting from database.
 */
 function readSetting(key) {
-    console.log("readSetting(" + key + ")");
+    //console.debug("readSetting(" + key + ")");
 
     var res = "";
     db.readTransaction(function(tx) {
@@ -77,6 +77,9 @@ function readSetting(key) {
         return true;
     }
     else if (res === 'false') {
+        return false;
+    }
+    else if (!res) {
         return false;
     }
 

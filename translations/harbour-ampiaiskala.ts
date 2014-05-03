@@ -10,7 +10,7 @@
     </message>
     <message>
         <location filename="../qml/AboutPage.qml" line="38"/>
-        <source>Ampiaiskala is a news feed reader for Ampparit.com news portal. Ampiaiskala is open source software and licensed under the terms of the MIT license.</source>
+        <source>Ampiaiskala is a news feed reader for Ampparit.com news portal&apos;s feeds (http://www.ampparit.com/tietoa/feeds). Ampiaiskala is open source software and licensed under the terms of the MIT license.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -51,39 +51,24 @@
 <context>
     <name>FeedsPage</name>
     <message>
-        <location filename="../qml/FeedsPage.qml" line="18"/>
+        <location filename="../qml/FeedsPage.qml" line="20"/>
         <source>Feeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/FeedsPage.qml" line="19"/>
+        <location filename="../qml/FeedsPage.qml" line="21"/>
         <source>Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/FeedsPage.qml" line="32"/>
-        <location filename="../qml/FeedsPage.qml" line="39"/>
+        <location filename="../qml/FeedsPage.qml" line="34"/>
+        <location filename="../qml/FeedsPage.qml" line="41"/>
         <source>Basic feed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/FeedsPage.qml" line="62"/>
+        <location filename="../qml/FeedsPage.qml" line="72"/>
         <source>Specific news feeds</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/FeedsPage.qml" line="71"/>
-        <source>Specific entertainment feeds</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/FeedsPage.qml" line="73"/>
-        <source>Specific sports feeds</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/FeedsPage.qml" line="75"/>
-        <source>Specific province feeds</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -105,7 +90,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/MainPage.qml" line="65"/>
+        <location filename="../qml/MainPage.qml" line="71"/>
         <source>Pull down to refresh</source>
         <translation type="unfinished"></translation>
     </message>

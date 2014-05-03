@@ -10,32 +10,31 @@ QtObject {
     property string feeds_basic_selected : "kaikki"
 
     // Ampparit.com feeds
-    property var feeds_basic_news : [];
-    function createBasicFeeds() {
-        feeds_basic_news.push(["kaikki", "Kaikki", "http://feeds.feedburner.com/ampparit-kaikki"])
-        feeds_basic_news.push(["uutiset", "Uutiset", "http://feeds.feedburner.com/ampparit-uutiset"])
-        feeds_basic_news.push(["uutiset-viihde", "Uutiset ja viihde", "http://feeds.feedburner.com/ampparit-uutiset-viihde"])
-        feeds_basic_news.push(["uutiset-urheilu", "Uutiset ja urheilu", "http://feeds.feedburner.com/ampparit-uutiset-urheilu"])
-        feeds_basic_news.push(["viihde", "Viihdeuutiset", "http://feeds.feedburner.com/ampparit-viihde"])
-        feeds_basic_news.push(["urheilu", "Urheilu-uutiset", "http://feeds.feedburner.com/ampparit-urheilu"])
-        feeds_basic_news.push(["maakunnat", "Maakunta-uutiset", "http://feeds.feedburner.com/ampparit-maakunnat"])
-    }
+    property var feeds_basic_news : [
+        {id: "none", name: "Ei valittu", url: ""},
+        {id: "kaikki", name: "Kaikki", url: "http://feeds.feedburner.com/ampparit-kaikki"},
+        {id: "uutiset", name: "Uutiset", url: "http://feeds.feedburner.com/ampparit-uutiset"},
+        {id: "uutiset-viihde", name: "Uutiset ja viihde", url: "http://feeds.feedburner.com/ampparit-uutiset-viihde"},
+        {id: "uutiset-urheilu", name: "Uutiset ja urheilu", url: "http://feeds.feedburner.com/ampparit-uutiset-urheilu"},
+        {id: "viihde", name: "Viihdeuutiset", url: "http://feeds.feedburner.com/ampparit-viihde"},
+        {id: "urheilu", name: "Urheilu-uutiset", url: "http://feeds.feedburner.com/ampparit-urheilu"},
+        {id: "maakunnat", name: "Maakunta-uutiset", url: "http://feeds.feedburner.com/ampparit-maakunnat"}
+    ];
 
     // Tarkemmat uutissyötteet
-    property var feeds_specific_news : [];
-    function createSpecificFeeds() {
-        feeds_specific_news.push(["kotimaa", "Kotimaa",  "http://feeds.feedburner.com/ampparit-kotimaa"])
-        feeds_specific_news.push(["ulkomaat", "Ulkomaat",  "http://feeds.feedburner.com/ampparit-ulkomaat"])
-        feeds_specific_news.push(["talous", "Talous", "http://feeds.feedburner.com/ampparit-talous"])
-        feeds_specific_news.push(["it", "IT", "http://feeds.feedburner.com/ampparit-it"])
-        feeds_specific_news.push(["media", "Media", "http://feeds.feedburner.com/ampparit-media"])
-        feeds_specific_news.push(["politiikka", "Politiikka", "http://feeds.feedburner.com/ampparit-politiikka"])
-        feeds_specific_news.push(["kulttuuri", "Kulttuuri", "http://feeds.feedburner.com/ampparit-kulttuuri"])
-        feeds_specific_news.push(["terveys", "Terveys ja hyvinvointi", "http://feeds.feedburner.com/ampparit-terveys-ja-hyvinvointi"])
-        feeds_specific_news.push(["tiede", "Tiede ja tutkimus", "http://feeds.feedburner.com/ampparit-tiede-ja-tutkimus"])
-        feeds_specific_news.push(["luonto", "Luonto ja ympäristö", "http://feeds.feedburner.com/ampparit-luonto-ja-ymparisto"])
-        feeds_specific_news.push(["rikos", "Rikos ja rangaistus", "http://feeds.feedburner.com/ampparit-rikos-ja-rangaistus"])
-    }
+    property var feeds_specific_news : [
+        { id: "kotimaa", name: "Kotimaa", url: "http://feeds.feedburner.com/ampparit-kotimaa", selected: false},
+        { id: "ulkomaat", name: "Ulkomaat", url: "http://feeds.feedburner.com/ampparit-ulkomaat", selected: false},
+        { id: "talous", name: "Talous", url: "http://feeds.feedburner.com/ampparit-talous", selected: false},
+        { id: "it", name: "IT", url: "http://feeds.feedburner.com/ampparit-it", selected: false},
+        { id: "media", name: "Media", url: "http://feeds.feedburner.com/ampparit-media", selected: false},
+        { id: "politiikka", name: "Politiikka", url: "http://feeds.feedburner.com/ampparit-politiikka", selected: false},
+        { id: "kulttuuri", name: "Kulttuuri", url: "http://feeds.feedburner.com/ampparit-kulttuuri", selected: false},
+        { id: "terveys", name: "Terveys ja hyvinvointi", url: "http://feeds.feedburner.com/ampparit-terveys-ja-hyvinvointi", selected: false},
+        { id: "tiede", name: "Tiede ja tutkimus", url: "http://feeds.feedburner.com/ampparit-tiede-ja-tutkimus", selected: false},
+        { id: "luonto", name: "Luonto ja ympäristö", url: "http://feeds.feedburner.com/ampparit-luonto-ja-ymparisto", selected: false},
+        { id: "rikos", name: "Rikos ja rangaistus", url: "http://feeds.feedburner.com/ampparit-rikos-ja-rangaistus", selected: false}
+    ];
 
     /*
     Tarkemmat viihdesyötteet
@@ -87,12 +86,37 @@ QtObject {
     */
 
     function loadFeedSettings() {
+        // Selecting basic feed if it's selected in settings
         feeds_basic_selected = Storage.readSetting("feeds_basic_selected");
+        if (feeds_basic_selected && feeds_basic_selected != "none") {
+            feeds_basic_news.forEach(function(entry) {
+                if (entry.id === feeds_basic_selected) {
+                    sourcesModel.addSource(entry.id, entry.name, entry.url)
+                }
+            });
+        }
+        // Selecting specific feeds if they're selected in settings
+        feeds_specific_news.forEach(function(entry) {
+            entry.selected = Storage.readSetting(entry.id);
+            if (entry.selected) {
+                sourcesModel.addSource(entry.id, entry.name, entry.url)
+            }
+        });
+
+        /*
+        feeds_specific_news.forEach(function(entry) {
+            console.debug(entry.id +"; " + entry.selected)
+        });
+        */
 
         settingsLoaded();
     }
 
     function saveFeedSettings() {
         Storage.writeSetting("feeds_basic_selected", feeds_basic_selected);
+
+        feeds_specific_news.forEach(function(entry) {
+            Storage.writeSetting(entry.id, entry.selected);
+        });
     }
 }

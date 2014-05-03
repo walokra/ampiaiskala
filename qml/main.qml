@@ -3,6 +3,7 @@ import Sailfish.Silica 1.0
 
 ApplicationWindow
 {
+
     SourcesModel {
         id: sourcesModel
 
@@ -10,6 +11,7 @@ ApplicationWindow
             var sources = [];
             for (var i = 0; i < count; i++) {
                 var data = {
+                    "id": get(i).id,
                     "name": get(i).name,
                     "url": get(i).url,
                 };
@@ -19,8 +21,10 @@ ApplicationWindow
         }
 
         Component.onCompleted: {
+            //console.debug("SourcesModel.onCompleted")
+            settings.loadFeedSettings();
             if (count === 0) {
-                sourcesModel.addSource("kaikki", "http://feeds.feedburner.com/ampparit-kaikki")
+                sourcesModel.addSource("kaikki", "Kaikki", "http://feeds.feedburner.com/ampparit-kaikki")
             }
         }
     }
@@ -45,18 +49,14 @@ ApplicationWindow
 
     Component {
         id: mainPageComponent
-        MainPage { }
+        MainPage { id: mainPage }
     }
-
-    AboutPage { id: aboutPage; }
-
-    FeedsPage { id: feedsPage; }
 
     Settings { id: settings }
 
     Constants { id: constants }
 
     Component.onCompleted: {
-        settings.loadFeedSettings();
+        //console.debug("main.onCompleted")
     }
 }

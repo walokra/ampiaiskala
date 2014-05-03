@@ -8,8 +8,8 @@
 	<translation>Tietoja Ampiaiskalasta</translation>
     </message>
     <message>
-	<source>Ampiaiskala is a news feed reader for Ampparit.com news portal. Ampiaiskala is open source software and licensed under the terms of the MIT license.</source>
-	<translation>Ampiaiskala on Ampparit.com-uutisportaalin uutissyötelukija. Ampiaiskala on avoimen lähdekoodin ohjelmisto ja lisensoitu MIT-lisenssin alle.</translation>
+	<source>Ampiaiskala is a news feed reader for Ampparit.com news portal&apos;s feeds (http://www.ampparit.com/tietoa/feeds). Ampiaiskala is open source software and licensed under the terms of the MIT license.</source>
+	<translation>Ampiaiskala on Ampparit.com-uutisportaalin tarjoamien uutissyötteiden lukija (http://www.ampparit.com/tietoa/feeds). Ampiaiskala on avoimen lähdekoodin ohjelmisto ja lisensoitu MIT-lisenssin alle.</translation>
     </message>
     <message>
 	<source>Version</source>
