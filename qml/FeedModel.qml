@@ -30,6 +30,7 @@ ListModel {
         property string feedName
 
         onSuccess: {
+            console.debug("_feedLoader.onSuccess")
             switch (type) {
                 case FeedLoader.Atom:
                     _atomModel.xml = "";
@@ -42,7 +43,7 @@ ListModel {
         }
 
         onError: {
-            console.log("onError")
+            console.debug("_feedLoader.onError")
             _handleError(details);
         }
     }
@@ -52,6 +53,7 @@ ListModel {
         property int index
 
         function load(loadModel) {
+            //console.debug("_itemLoader.load")
             model = loadModel;
             index = 0;
             start();
@@ -61,6 +63,7 @@ ListModel {
         repeat: true
 
         onTriggered: {
+            //console.debug("_itemLoader.onTriggered")
             for (var end = index + 2; index < end && index < model.count; index++) {
                 listModel._loadItem(model, index);
                 index++;
@@ -75,8 +78,7 @@ ListModel {
 
     property AtomModel _atomModel: AtomModel {
         onStatusChanged: {
-            //console.log("AtomModel.status = " + status);
-
+            //console.debug("AtomModel.status = " + status);
             if (status === XmlListModel.Error) {
                 _handleError(errorString());
             } else if (status === XmlListModel.Ready) {
@@ -165,6 +167,7 @@ ListModel {
         } else {
             listModel.error(qsTr("Error with %1:\n%2").arg(feedName).arg(error));
         }
+        busy = false;
     }
 
 }

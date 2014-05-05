@@ -40,9 +40,9 @@
 <context>
     <name>FeedModel</name>
     <message>
-        <location filename="../qml/FeedModel.qml" line="160"/>
-        <location filename="../qml/FeedModel.qml" line="164"/>
+        <location filename="../qml/FeedModel.qml" line="162"/>
         <location filename="../qml/FeedModel.qml" line="166"/>
+        <location filename="../qml/FeedModel.qml" line="168"/>
         <source>Error with %1:
 %2</source>
         <translation type="unfinished"></translation>

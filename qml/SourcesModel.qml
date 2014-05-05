@@ -5,7 +5,7 @@ ListModel {
     signal modelChanged
 
     function addSource(id, name, url) {
-        console.log("addSource: " + id + ", " + name + ", " + url)
+        console.debug("addSource: " + id + ", " + name + ", " + url)
         append({
             "id": id,
             "name": name,
