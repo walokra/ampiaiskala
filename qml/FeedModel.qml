@@ -30,7 +30,7 @@ ListModel {
         property string feedName
 
         onSuccess: {
-            console.debug("_feedLoader.onSuccess")
+            //console.debug("_feedLoader.onSuccess")
             switch (type) {
                 case FeedLoader.Atom:
                     _atomModel.xml = "";

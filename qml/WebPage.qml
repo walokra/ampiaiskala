@@ -8,8 +8,9 @@ Page {
 
     // work around Silica bug: don't let webview enable forward navigation
     onForwardNavigationChanged: {
-        if (forwardNavigation)
+        if (forwardNavigation) {
             forwardNavigation = false;
+        }
     }
 
     allowedOrientations: Orientation.All
@@ -35,7 +36,8 @@ Page {
 
                     onClicked: {
                         root.backNavigation = true;
-                        pageStack.navigateBack(PageStackAction.Animated);
+                        //pageStack.navigateBack(PageStackAction.Animated);
+                        pageStack.pop(PageStackAction.Animated);
                     }
                 }
 

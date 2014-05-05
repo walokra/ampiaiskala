@@ -98,12 +98,12 @@
 <context>
     <name>WebPage</name>
     <message>
-        <location filename="../qml/WebPage.qml" line="34"/>
+        <location filename="../qml/WebPage.qml" line="35"/>
         <source>Close web view</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/WebPage.qml" line="43"/>
+        <location filename="../qml/WebPage.qml" line="45"/>
         <source>Open in browser</source>
         <translation type="unfinished"></translation>
     </message>
