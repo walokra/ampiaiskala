@@ -9,22 +9,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/AboutPage.qml" line="38"/>
-        <source>Ampiaiskala is a news feed reader for Ampparit.com news portal&apos;s feeds (http://www.ampparit.com/tietoa/feeds). Ampiaiskala is open source software and licensed under the terms of the MIT license.</source>
+        <location filename="../qml/AboutPage.qml" line="40"/>
+        <source>Ampiaiskala is an app for following news from &lt;a href=&apos;http://www.ampparit.com/tietoa/feeds&apos;&gt;Ampparit.com news portal&apos;s feeds&lt;/a&gt;. Ampiaiskala is open source software and licensed under the terms of the MIT license.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/AboutPage.qml" line="42"/>
+        <location filename="../qml/AboutPage.qml" line="44"/>
         <source>Version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/AboutPage.qml" line="57"/>
+        <location filename="../qml/AboutPage.qml" line="59"/>
         <source>Developed By</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/AboutPage.qml" line="75"/>
+        <location filename="../qml/AboutPage.qml" line="83"/>
+        <source>Bug reports</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/AboutPage.qml" line="87"/>
         <source>Powered By</source>
         <translation type="unfinished"></translation>
     </message>
@@ -40,9 +45,9 @@
 <context>
     <name>FeedModel</name>
     <message>
-        <location filename="../qml/FeedModel.qml" line="162"/>
-        <location filename="../qml/FeedModel.qml" line="166"/>
-        <location filename="../qml/FeedModel.qml" line="168"/>
+        <location filename="../qml/FeedModel.qml" line="201"/>
+        <location filename="../qml/FeedModel.qml" line="205"/>
+        <location filename="../qml/FeedModel.qml" line="207"/>
         <source>Error with %1:
 %2</source>
         <translation type="unfinished"></translation>
@@ -75,22 +80,27 @@
 <context>
     <name>MainPage</name>
     <message>
-        <location filename="../qml/MainPage.qml" line="32"/>
+        <location filename="../qml/MainPage.qml" line="41"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/MainPage.qml" line="40"/>
+        <location filename="../qml/MainPage.qml" line="49"/>
         <source>Feeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/MainPage.qml" line="47"/>
+        <location filename="../qml/MainPage.qml" line="56"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/MainPage.qml" line="71"/>
+        <location filename="../qml/MainPage.qml" line="76"/>
+        <source>Refreshed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/MainPage.qml" line="92"/>
         <source>Pull down to refresh</source>
         <translation type="unfinished"></translation>
     </message>
@@ -105,6 +115,51 @@
     <message>
         <location filename="../qml/WebPage.qml" line="45"/>
         <source>Open in browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>utils</name>
+    <message>
+        <location filename="../qml/components/utils.js" line="13"/>
+        <source>Now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/components/utils.js" line="17"/>
+        <source>Just now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/components/utils.js" line="21"/>
+        <source>&lt; 5 minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/components/utils.js" line="23"/>
+        <source>&lt; 15 minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/components/utils.js" line="25"/>
+        <source>&lt; 30 minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/components/utils.js" line="27"/>
+        <source>&lt; 45 minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message numerus="yes">
+        <location filename="../qml/components/utils.js" line="31"/>
+        <source>%n hour(s)</source>
+        <translation type="unfinished">
+            <numerusform></numerusform>
+        </translation>
+    </message>
+    <message>
+        <location filename="../qml/components/utils.js" line="35"/>
+        <source>Yesterday %1</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

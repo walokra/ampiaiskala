@@ -30,7 +30,11 @@ OTHER_FILES = \
     qml/FeedsPage.qml \
     qml/AboutPage.qml \
     qml/WebPage.qml \
-    qml/CoverPage.qml
+    qml/CoverPage.qml \
+    qml/components/utils.js \
+    qml/Panel.qml \
+    qml/PanelView.qml \
+    qml/FeedPanel.qml
 
 INCLUDEPATH += $$PWD
 

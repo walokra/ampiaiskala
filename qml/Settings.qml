@@ -8,6 +8,7 @@ QtObject {
 
     // Settings page
     property string feeds_basic_selected : "kaikki"
+    property string feeds_basic_selectedName : "Kaikki"
 
     // Ampparit.com feeds
     property var feeds_basic_news : [
@@ -91,7 +92,8 @@ QtObject {
         if (feeds_basic_selected && feeds_basic_selected != "none") {
             feeds_basic_news.forEach(function(entry) {
                 if (entry.id === feeds_basic_selected) {
-                    sourcesModel.addSource(entry.id, entry.name, entry.url)
+                    sourcesModel.addSource(entry.id, entry.name, entry.url);
+                    feeds_basic_selectedName = entry.name;
                 }
             });
         }
@@ -118,5 +120,7 @@ QtObject {
         feeds_specific_news.forEach(function(entry) {
             Storage.writeSetting(entry.id, entry.selected);
         });
+
+        settingsLoaded();
     }
 }

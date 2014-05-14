@@ -129,9 +129,10 @@ Dialog {
         if (selectedId && selectedId != "none") {
             settings.feeds_basic_selected = selectedId
             sourcesModel.addSource(selectedId, selectedName, selectedUrl)
+            settings.feeds_basic_selectedName = selectedName;
         }
 
-        // Check which feeds are selected and add them to source
+        // Check which specific feeds are selected and add them to source
         settings.feeds_specific_news.forEach(function(entry) {
             if (entry.selected === true) {
                 //console.debug("specific selected, " + entry.id + "; "+ entry.selected)
@@ -144,6 +145,7 @@ Dialog {
 
     Component.onCompleted: {
         //console.debug("FeedsPage.onCompleted, feeds_basic_selected=" + settings.feeds_basic_selected)
+        // Setting the current value for combobox
         switch (settings.feeds_basic_selected) {
             case settings.feeds_basic_news[0].id:
                 feedModeBox.currentIndex = 0

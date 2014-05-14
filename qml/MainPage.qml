@@ -3,7 +3,15 @@ import Sailfish.Silica 1.0
 import QtQuick.XmlListModel 2.0
 
 Page {
-    id: mainPage
+    id: mp
+
+    property alias contentItem: flickable
+
+    onStatusChanged: {
+        if (status == PageStatus.Activating) {
+            timeSinceRefresh = Format.formatDate(feedModel.lastRefresh, Formatter.DurationElapsed);
+        }
+    }
 
     Connections {
         target: coverAdaptor
@@ -19,10 +27,11 @@ Page {
 
     SilicaFlickable {
         id: flickable
+        z: -2
 
         anchors.fill: parent
 
-        PageHeader { id: header; title: constants.appName }
+        PageHeader { id: header; title: selectedSectionName + " - " + constants.appName }
 
         PullDownMenu {
             id: pullDownMenu
@@ -57,23 +66,35 @@ Page {
             SectionHeader { text: section }
         }
 
+        Label {
+            id: lastRefreshLbl
+            anchors { top: header.bottom; right: parent.right; }
+            anchors.rightMargin: constants.paddingLarge;
+            font.pixelSize: constants.fontSizeXXSmall
+            color: constants.colorHighlight
+            textFormat: Text.PlainText
+            text: qsTr("Refreshed") + ": " + timeSinceRefresh;
+            visible: timeSinceRefresh != "";
+        }
+
         SilicaListView {
             id: listView
 
-            anchors { top: header.bottom; left: parent.left; right: parent.right; bottom: parent.bottom; }
+            anchors { top: lastRefreshLbl.bottom; left: parent.left; right: parent.right; bottom: parent.bottom; }
             anchors.margins: constants.paddingSmall;
 
-            cacheBuffer: 4000
-            pressDelay: 0
+            cacheBuffer: 4000;
+            pressDelay: 0;
+            clip: true;
 
             ViewPlaceholder {
-                enabled: sourcesModel.count > 0 && !feedModel.busy && feedModel.count === 0
+                enabled: sourcesModel.count > 0 && !feedModel.busy && newsModel.count === 0
                 text: qsTr("Pull down to refresh")
             }
 
-            model: feedModel
+            model: newsModel
 
-            section.property: "name"
+            section.property: "timeSince"
             section.criteria: ViewSection.FullString
             section.delegate: sectionHeading
 

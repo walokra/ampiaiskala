@@ -8,8 +8,8 @@
 	<translation>Tietoja Ampiaiskalasta</translation>
     </message>
     <message>
-	<source>Ampiaiskala is a news feed reader for Ampparit.com news portal&apos;s feeds (http://www.ampparit.com/tietoa/feeds). Ampiaiskala is open source software and licensed under the terms of the MIT license.</source>
-	<translation>Ampiaiskala on Ampparit.com-uutisportaalin tarjoamien uutissyötteiden lukija (http://www.ampparit.com/tietoa/feeds). Ampiaiskala on avoimen lähdekoodin ohjelmisto ja lisensoitu MIT-lisenssin alle.</translation>
+	<source>Ampiaiskala is an app for following news from &lt;a href=&apos;http://www.ampparit.com/tietoa/feeds&apos;&gt;Ampparit.com news portal&apos;s feeds&lt;/a&gt;. Ampiaiskala is open source software and licensed under the terms of the MIT license.</source>
+	<translation>Ampiaiskala on sovellus uutisten seuraamiseen &lt;a href=&apos;http://www.ampparit.com/tietoa/feeds&apos;&gt;Ampparit.com-uutisportaalin tarjoamista uutissyötteistä&lt;/a&gt;. Ampiaiskala on avoimen lähdekoodin ohjelmisto ja lisensoitu MIT-lisenssin alle.</translation>
     </message>
     <message>
 	<source>Version</source>
@@ -22,6 +22,10 @@
     <message>
 	<source>Powered By</source>
 	<translation>Teknologiat</translation>
+    </message>
+    <message>
+	<source>Bug reports</source>
+	<translation>Virheraportit</translation>
     </message>
 </context>
 <context>
@@ -107,6 +111,10 @@
     <message>
 	<source>Pull down to refresh</source>
 	<translation>Vedä alas päivittääksesi</translation>
+    </message>
+    <message>
+	<source>Refreshed</source>
+	<translation>Päivitetty</translation>
     </message>
 </context>
 <context>

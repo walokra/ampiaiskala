@@ -23,8 +23,7 @@ Page {
 
             anchors.leftMargin: constants.paddingMedium;
             anchors.rightMargin: constants.paddingMedium;
-
-            //SectionHeader { text: qsTr("About") }
+            spacing: Theme.paddingMedium;
 
             Item {
                 anchors { left: parent.left; right: parent.right; }
@@ -35,7 +34,10 @@ Page {
                     width: parent.width;
                     wrapMode: Text.Wrap;
                     font.pixelSize: constants.fontSizeMedium;
-                    text: qsTr("Ampiaiskala is a news feed reader for Ampparit.com news portal's feeds (http://www.ampparit.com/tietoa/feeds). Ampiaiskala is open source software and licensed under the terms of the MIT license.")
+                    textFormat: Text.StyledText
+                    linkColor: Theme.highlightColor
+                    onLinkActivated: Qt.openUrlExternally(link);
+                    text: qsTr("Ampiaiskala is an app for following news from <a href='http://www.ampparit.com/tietoa/feeds'>Ampparit.com news portal's feeds</a>. Ampiaiskala is open source software and licensed under the terms of the MIT license.")
                 }
             }
 
@@ -72,7 +74,34 @@ Page {
                 }
             }
 
+            Label {
+                anchors { right: parent.right; rightMargin: Theme.paddingLarge; }
+                textFormat: Text.StyledText;
+                linkColor: Theme.highlightColor;
+                font.pixelSize: Theme.fontSizeSmall;
+                truncationMode: TruncationMode.Fade;
+                text: qsTr("Bug reports") + ": " + "<a href='https://github.com/walokra/ampiaiskala/issues'>Github</a>";
+                onLinkActivated: Qt.openUrlExternally(link);
+            }
+
             SectionHeader { text: qsTr("Powered By") }
+
+            ListItem {
+                Image {
+                    id: highFiImage;
+                    source: "images/ampparit-logo_80x80.png";
+                    width: 74;
+                    height: 80;
+                }
+                Label {
+                    anchors { left: highFiImage.right; leftMargin: constants.paddingLarge; }
+                    textFormat: Text.StyledText
+                    linkColor: Theme.highlightColor
+                    text: "<a href='http://ampparit.com'>Ampparit.com</a>";
+                    font.pixelSize: constants.fontSizeLarge;
+                    onLinkActivated: Qt.openUrlExternally(link);
+                }
+            }
 
             ListItem {
                 Image {
