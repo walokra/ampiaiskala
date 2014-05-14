@@ -105,11 +105,12 @@ Item {
     function refresh() {
         //console.log("Refreshing model");
         busy = true;
+        allFeeds = [];
         newsModel.clear();
         _sourcesQueue = sources;
         _loadNext();
         lastRefresh = new Date();
-        timeSinceRefresh = Format.formatDate(feedModel.lastRefresh, Formatter.DurationElapsed);
+        timeSinceRefresh = Utils.timeDiff(lastRefresh);
     }
 
     /* Aborts loading.
@@ -131,15 +132,16 @@ Item {
             var url = source.url;
             var id = source.id;
 
-            console.log("Now loading: " + name);
-            currentlyLoading = name;
+            var progress = "("+ (sources.length - queue.length) + "/" + sources.length + ")";
+            console.log("Now loading "+ progress +": " + name);
+            currentlyLoading = name + " " + progress;
             _feedLoader.feedName = name;
             _feedLoader.source = url;
             _feedLoader.id = id;
 
             _sourcesQueue = queue;
         } else {
-           console.log(JSON.stringify(allFeeds));
+           //console.log(JSON.stringify(allFeeds));
 
             for(var i in allFeeds) {
                if (allFeeds[i].id === selectedSection) {
@@ -158,12 +160,12 @@ Item {
      */
     function _loadItem(model, i) {
         var item = _createItem(model.get(i));
+
         //item["source"] = "" + _feedLoader.source; // convert to string
         //item["date"] = item.dateString !== "" ? new Date(item.dateString) : new Date();
         //item["name"] = _feedLoader.feedName;
 
         _items.push(item);
-        //newsModel.append(item);
     }
 
     /*
@@ -188,6 +190,7 @@ Item {
         }
         item["timeSince"] = Utils.timeDiff(obj["updated"]);
         //item["timeSince"] = Format.formatDate(obj["updated"], Formatter.DurationElapsed);
+        item["read"] = false;
 
         return item;
     }

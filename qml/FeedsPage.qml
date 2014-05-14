@@ -10,18 +10,26 @@ Dialog {
     property string selectedUrl : ""
     property string selectedName : ""
 
-    SilicaFlickable {
-        id: flickable
+    Connections {
+        target: settings
 
-        anchors.fill: parent
+        onSettingsLoaded: {
+            listView.model = specificFeedsModel;
+        }
+    }
+
+    SilicaFlickable {
+        id: flickable;
+
+        anchors.fill: parent;
 
         DialogHeader {
-            id: header
-            title: qsTr("Feeds")
-            acceptText: qsTr("Save")
+            id: header;
+            title: qsTr("Feeds");
+            acceptText: qsTr("Save");
         }
 
-        contentHeight: contentArea.height + 150;
+        //contentHeight: contentArea.height + listView.height + 100;
 
         Column {
             id: contentArea;
@@ -31,7 +39,7 @@ Dialog {
             anchors.leftMargin: constants.paddingMedium
             anchors.rightMargin: constants.paddingMedium
 
-            SectionHeader { text: qsTr("Basic feed") }
+            //SectionHeader { text: qsTr("Basic feed") }
 
             ComboBox {
                 id: feedModeBox
@@ -45,7 +53,7 @@ Dialog {
 
                     Repeater {
                          width: parent.width
-                         model: settings.feeds_basic_news
+                         model: settings.feeds_basic
 
                          delegate: MenuItem {
                              text: modelData.name
@@ -62,83 +70,95 @@ Dialog {
                     //}
                 }
                 onCurrentIndexChanged: {
-                    selectedId = settings.feeds_basic_news[currentIndex].id
-                    selectedName = settings.feeds_basic_news[currentIndex].name
-                    selectedUrl = settings.feeds_basic_news[currentIndex].url
+                    selectedId = settings.feeds_basic[currentIndex].id
+                    selectedName = settings.feeds_basic[currentIndex].name
+                    selectedUrl = settings.feeds_basic[currentIndex].url
                     //console.debug("onCurrentIndexChanged("+ currentIndex +"): selectedId= " + selectedId + "; selectedUrl=" + selectedUrl)
                 }
             }
+        }
 
-            SectionHeader { text: qsTr("Specific news feeds") }
+        // The delegate for each section header
+        Component {
+            id: sectionHeading
+            SectionHeader { text: section }
+        }
 
-            Column {
-                id: newsFeeds;
-                anchors {left: parent.left; right: parent.right }
-                width: parent.width
-                height: childrenRect.height
+        SilicaListView {
+            id: listView
 
-                Repeater {
-                    id: txtSwitchRepeater
-                    width: parent.width
-                    model: settings.feeds_specific_news
+            anchors { top: contentArea.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
+            anchors.margins: constants.paddingSmall;
+            height: childrenRect.height;
 
-                    delegate: TextSwitch {
-                        text: modelData.name
-                        checked: modelData.selected
-                        onCheckedChanged: {
-                            //console.debug("onCheckedChanged, id=" + modelData.id)
-                            checked ? addFeed(modelData.id) : removeFeed(modelData.id);
-                        }
+            pressDelay: 0;
+            clip: true;
+
+            model: specificFeedsModel;
+
+            section.property: "section"
+            section.criteria: ViewSection.FullString
+            section.delegate: sectionHeading
+
+            delegate: Column {
+                id: delegate;
+                width: listView.width;
+                spacing: constants.paddingSmall;
+                height: txtSwitch.height;
+
+                TextSwitch {
+                    id: txtSwitch
+                    text: name
+                    checked: selected
+                    onCheckedChanged: {
+                        //console.debug("onCheckedChanged, id=" + modelData.id)
+                        checked ? addFeed(id) : removeFeed(id);
                     }
                 }
             }
-
-            /*
-            SectionHeader { text: qsTr("Specific entertainment feeds") }
-
-            SectionHeader { text: qsTr("Specific sports feeds") }
-
-            SectionHeader { text: qsTr("Specific province feeds") }
-            */
+            VerticalScrollDecorator { flickable: listView }
         }
 
-        VerticalScrollDecorator { flickable: flickable }
     }
 
     function addFeed(id) {
         //console.debug("addFeed: " + id)
-        settings.feeds_specific_news.forEach(function(entry) {
+        //settings.feeds_specific.forEach(function(entry) {
+        for (var i=0; i < specificFeedsModel.count; i++) {
+            var entry = specificFeedsModel.get(i);
             if (entry.id === id) {
                 entry.selected = true;
             }
-        });
+        };
     }
 
     function removeFeed(id) {
         //console.debug("removeFeed: " + id)
-        settings.feeds_specific_news.forEach(function(entry) {
+        for (var i=0; i < specificFeedsModel.count; i++) {
+            var entry = specificFeedsModel.get(i);
             if (entry.id === id) {
                 entry.selected = false;
             }
-        });
+        };
     }
 
     onAccepted: {
-        sourcesModel.clear()
+        sourcesModel.clear();
 
         if (selectedId && selectedId != "none") {
-            settings.feeds_basic_selected = selectedId
-            sourcesModel.addSource(selectedId, selectedName, selectedUrl)
+            settings.feeds_basic_selected = selectedId;
+            sourcesModel.addSource(selectedId, selectedName, selectedUrl);
             settings.feeds_basic_selectedName = selectedName;
         }
 
         // Check which specific feeds are selected and add them to source
-        settings.feeds_specific_news.forEach(function(entry) {
+        for (var i=0; i < specificFeedsModel.count; i++) {
+            var entry = specificFeedsModel.get(i);
             if (entry.selected === true) {
                 //console.debug("specific selected, " + entry.id + "; "+ entry.selected)
                 sourcesModel.addSource(entry.id, entry.name, entry.url)
             }
-        });
+        };
 
         settings.saveFeedSettings();
     }
@@ -147,28 +167,28 @@ Dialog {
         //console.debug("FeedsPage.onCompleted, feeds_basic_selected=" + settings.feeds_basic_selected)
         // Setting the current value for combobox
         switch (settings.feeds_basic_selected) {
-            case settings.feeds_basic_news[0].id:
+            case settings.feeds_basic[0].id:
                 feedModeBox.currentIndex = 0
                 break;
-            case settings.feeds_basic_news[1].id:
+            case settings.feeds_basic[1].id:
                 feedModeBox.currentIndex = 1
                 break;
-            case settings.feeds_basic_news[2].id:
+            case settings.feeds_basic[2].id:
                 feedModeBox.currentIndex = 2
                 break;
-            case settings.feeds_basic_news[3].id:
+            case settings.feeds_basic[3].id:
                 feedModeBox.currentIndex = 3
                 break;
-            case settings.feeds_basic_news[4].id:
+            case settings.feeds_basic[4].id:
                 feedModeBox.currentIndex = 4
                 break;
-            case settings.feeds_basic_news[5].id:
+            case settings.feeds_basic[5].id:
                 feedModeBox.currentIndex = 5
                 break;
-            case settings.feeds_basic_news[6].id:
+            case settings.feeds_basic[6].id:
                 feedModeBox.currentIndex = 6
                 break;
-            case settings.feeds_basic_news[7].id:
+            case settings.feeds_basic[7].id:
                 feedModeBox.currentIndex = 7
                 break;
             default:

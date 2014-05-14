@@ -1,5 +1,6 @@
 import QtQuick 2.1
 import Sailfish.Silica 1.0
+import "components/utils.js" as Utils
 
 CoverBackground {
     id: cover
@@ -9,6 +10,14 @@ CoverBackground {
         anchors.bottom: parent.bottom
         source: "images/ampiaiskala-overlay.png"
         opacity: 0.1
+    }
+
+    onStatusChanged: {
+        //console.log("cover.onStatusChanged, status=" + status);
+        if (status == PageStatus.Deactivating) {
+            console.log("cover deactivating");
+            timeSinceRefresh = Utils.timeDiff(feedModel.lastRefresh);
+        }
     }
 
     Column {

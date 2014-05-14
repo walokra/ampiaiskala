@@ -7,61 +7,64 @@ QtObject {
     signal settingsLoaded
 
     // Settings page
-    property string feeds_basic_selected : "kaikki"
-    property string feeds_basic_selectedName : "Kaikki"
+    property string feeds_basic_selected : "kaikki";
+    property string feeds_basic_selectedName : qsTr("All");
 
     // Ampparit.com feeds
-    property var feeds_basic_news : [
-        {id: "none", name: "Ei valittu", url: ""},
-        {id: "kaikki", name: "Kaikki", url: "http://feeds.feedburner.com/ampparit-kaikki"},
-        {id: "uutiset", name: "Uutiset", url: "http://feeds.feedburner.com/ampparit-uutiset"},
-        {id: "uutiset-viihde", name: "Uutiset ja viihde", url: "http://feeds.feedburner.com/ampparit-uutiset-viihde"},
-        {id: "uutiset-urheilu", name: "Uutiset ja urheilu", url: "http://feeds.feedburner.com/ampparit-uutiset-urheilu"},
-        {id: "viihde", name: "Viihdeuutiset", url: "http://feeds.feedburner.com/ampparit-viihde"},
-        {id: "urheilu", name: "Urheilu-uutiset", url: "http://feeds.feedburner.com/ampparit-urheilu"},
-        {id: "maakunnat", name: "Maakunta-uutiset", url: "http://feeds.feedburner.com/ampparit-maakunnat"}
+    property var feeds_basic : [
+        {id: "kaikki", name: qsTr("All"), url: "http://feeds.feedburner.com/ampparit-kaikki"},
+        {id: "uutiset", name: qsTr("News"), url: "http://feeds.feedburner.com/ampparit-uutiset"},
+        {id: "uutiset-viihde", name: qsTr("News and entertainment"), url: "http://feeds.feedburner.com/ampparit-uutiset-viihde"},
+        {id: "uutiset-urheilu", name: qsTr("News and sports"), url: "http://feeds.feedburner.com/ampparit-uutiset-urheilu"},
+        {id: "viihde", name: qsTr("Entertainment"), url: "http://feeds.feedburner.com/ampparit-viihde"},
+        {id: "urheilu", name: qsTr("Sports news"), url: "http://feeds.feedburner.com/ampparit-urheilu"},
+        {id: "maakunnat", name: qsTr("Province news"), url: "http://feeds.feedburner.com/ampparit-maakunnat"}
     ];
 
     // Tarkemmat uutissyötteet
+    property string section_news : qsTr("Specific news feeds");
     property var feeds_specific_news : [
-        { id: "kotimaa", name: "Kotimaa", url: "http://feeds.feedburner.com/ampparit-kotimaa", selected: false},
-        { id: "ulkomaat", name: "Ulkomaat", url: "http://feeds.feedburner.com/ampparit-ulkomaat", selected: false},
-        { id: "talous", name: "Talous", url: "http://feeds.feedburner.com/ampparit-talous", selected: false},
-        { id: "it", name: "IT", url: "http://feeds.feedburner.com/ampparit-it", selected: false},
-        { id: "media", name: "Media", url: "http://feeds.feedburner.com/ampparit-media", selected: false},
-        { id: "politiikka", name: "Politiikka", url: "http://feeds.feedburner.com/ampparit-politiikka", selected: false},
-        { id: "kulttuuri", name: "Kulttuuri", url: "http://feeds.feedburner.com/ampparit-kulttuuri", selected: false},
-        { id: "terveys", name: "Terveys ja hyvinvointi", url: "http://feeds.feedburner.com/ampparit-terveys-ja-hyvinvointi", selected: false},
-        { id: "tiede", name: "Tiede ja tutkimus", url: "http://feeds.feedburner.com/ampparit-tiede-ja-tutkimus", selected: false},
-        { id: "luonto", name: "Luonto ja ympäristö", url: "http://feeds.feedburner.com/ampparit-luonto-ja-ymparisto", selected: false},
-        { id: "rikos", name: "Rikos ja rangaistus", url: "http://feeds.feedburner.com/ampparit-rikos-ja-rangaistus", selected: false}
+        { section: section_news, id: "kotimaa", name: qsTr("National"), url: "http://feeds.feedburner.com/ampparit-kotimaa", selected: false},
+        { section: section_news, id: "ulkomaat", name: qsTr("World"), url: "http://feeds.feedburner.com/ampparit-ulkomaat", selected: false},
+        { section: section_news, id: "talous", name: qsTr("Finance"), url: "http://feeds.feedburner.com/ampparit-talous", selected: false},
+        { section: section_news, id: "it", name: qsTr("IT"), url: "http://feeds.feedburner.com/ampparit-it", selected: false},
+        { section: section_news, id: "media", name: qsTr("Media"), url: "http://feeds.feedburner.com/ampparit-media", selected: false},
+        { section: section_news, id: "politiikka", name: qsTr("Politics"), url: "http://feeds.feedburner.com/ampparit-politiikka", selected: false},
+        { section: section_news, id: "kulttuuri", name: qsTr("Culture"), url: "http://feeds.feedburner.com/ampparit-kulttuuri", selected: false},
+        { section: section_news, id: "terveys", name: qsTr("Health and well-being"), url: "http://feeds.feedburner.com/ampparit-terveys-ja-hyvinvointi", selected: false},
+        { section: section_news, id: "tiede", name: qsTr("Science and research"), url: "http://feeds.feedburner.com/ampparit-tiede-ja-tutkimus", selected: false},
+        { section: section_news, id: "luonto", name: qsTr("Nature and environment"), url: "http://feeds.feedburner.com/ampparit-luonto-ja-ymparisto", selected: false},
+        { section: section_news, id: "rikos", name: qsTr("Crime and punishment"), url: "http://feeds.feedburner.com/ampparit-rikos-ja-rangaistus", selected: false}
+    ];
+
+    // Tarkemmat viihdesyötteet
+    property string section_entertainment : qsTr("Specific entertainment feeds");
+    property var feeds_specific_entertainment : [
+        { section: section_entertainment, id: "elokuvat", name: qsTr("Movies"), url: "http://feeds.feedburner.com/ampparit-elokuvat", selected: false},
+        { section: section_entertainment, id: "televisio", name: qsTr("Television"), url: "http://feeds.feedburner.com/ampparit-televisio", selected: false},
+        { section: section_entertainment, id: "musiikki", name: qsTr("Music"), url: "http://feeds.feedburner.com/ampparit-musiikki", selected: false},
+        { section: section_entertainment, id: "pelit", name: qsTr("Games"), url: "http://feeds.feedburner.com/ampparit-pelit", selected: false}
+    ];
+
+    // Tarkemmat urheilusyötteet
+    property string section_sports : qsTr("Specific sports feeds");
+    property var feeds_specific_sports : [
+        { section: section_sports, id: "jaakiekko", name: qsTr("Hockey"), url: "http://feeds.feedburner.com/ampparit-jaakiekko", selected: false},
+        { section: section_sports, id: "jalkapallo", name: qsTr("Football"), url: "http://feeds.feedburner.com/ampparit-jalkapallo", selected: false},
+        { section: section_sports, id: "moottoriurheilu", name: qsTr("Motorsports"), url: "http://feeds.feedburner.com/ampparit-moottoriurheilu", selected: false},
+        { section: section_sports, id: "formula-1", name: qsTr("Formula 1"), url: "http://feeds.feedburner.com/ampparit-formula-1", selected: false},
+        { section: section_sports, id: "talvilajit", name: qsTr("Winter sports"), url: "http://feeds.feedburner.com/ampparit-talvilajit", selected: false},
+        { section: section_sports, id: "yleisurheilu", name: qsTr("Track & field"), url: "http://feeds.feedburner.com/ampparit-yleisurheilu", selected: false},
+        { section: section_sports, id: "koripallo", name: qsTr("Basketball"), url: "http://feeds.feedburner.com/ampparit-koripallo", selected: false},
+        { section: section_sports, id: "lentopallo", name: qsTr("Volleyball"), url: "http://feeds.feedburner.com/ampparit-lentopallo", selected: false},
+        { section: section_sports, id: "salibandy", name: qsTr("Floorball"), url: "http://feeds.feedburner.com/ampparit-salibandy", selected: false},
+        { section: section_sports, id: "golf", name: qsTr("Golf"), url: "http://feeds.feedburner.com/ampparit-golf", selected: false},
+        { section: section_sports, id: "raviurheilu", name: qsTr("Horse racing"), url: "http://feeds.feedburner.com/ampparit-raviurheilu", selected: false},
+        { section: section_sports, id: "pesapallo", name: qsTr("Finnish baseball"), url: "http://feeds.feedburner.com/ampparit-pesapallo", selected: false},
+        { section: section_sports, id: "muut-lajit", name: qsTr("Other sports"), url: "http://feeds.feedburner.com/ampparit-muut-lajit", selected: false}
     ];
 
     /*
-    Tarkemmat viihdesyötteet
-        Big Brother	http://feeds.feedburner.com/ampparit-big-brother
-        Jutut ja juorut	http://feeds.feedburner.com/ampparit-jutut-ja-juorut
-        Elokuvat	http://feeds.feedburner.com/ampparit-elokuvat
-        Televisio	http://feeds.feedburner.com/ampparit-televisio
-        Musiikki	http://feeds.feedburner.com/ampparit-musiikki
-        Pelit	http://feeds.feedburner.com/ampparit-pelit
-
-
-    Tarkemmat urheilusyötteet
-        Jääkiekko	http://feeds.feedburner.com/ampparit-jaakiekko
-        Jalkapallo	http://feeds.feedburner.com/ampparit-jalkapallo
-        Moottoriurheilu	http://feeds.feedburner.com/ampparit-moottoriurheilu
-        Formula 1	http://feeds.feedburner.com/ampparit-formula-1
-        Talvilajit	http://feeds.feedburner.com/ampparit-talvilajit
-        Yleisurheilu	http://feeds.feedburner.com/ampparit-yleisurheilu
-        Koripallo	http://feeds.feedburner.com/ampparit-koripallo
-        Lentopallo	http://feeds.feedburner.com/ampparit-lentopallo
-        Salibandy	http://feeds.feedburner.com/ampparit-salibandy
-        Golf	http://feeds.feedburner.com/ampparit-golf
-        Raviurheilu	http://feeds.feedburner.com/ampparit-raviurheilu
-        Pesäpallo	http://feeds.feedburner.com/ampparit-pesapallo
-        Muut lajit	http://feeds.feedburner.com/ampparit-muut-lajit
-
     Tarkemmat maakuntasyötteet
         Etelä-Pohjanmaa	http://feeds.feedburner.com/ampparit-etela-pohjanmaa
         Kainuu	http://feeds.feedburner.com/ampparit-kainuu
@@ -74,42 +77,51 @@ QtObject {
         Päijät-Häme	http://feeds.feedburner.com/ampparit-paijat-hame
         Uusimaa	http://feeds.feedburner.com/ampparit-uusimaa
         Varsinais-Suomi	http://feeds.feedburner.com/ampparit-varsinais-suomi
-
-    Muut syötteet
-        Autot ja liikenne	http://feeds.feedburner.com/ampparit-autot-ja-liikenne
-        Matkailu	http://feeds.feedburner.com/ampparit-matkailu
-        Pääkirjoitukset	http://feeds.feedburner.com/ampparit-paakirjoitukset
-        Ruoka ja juoma	http://feeds.feedburner.com/ampparit-ruoka-ja-juoma
-        Koti ja rakentaminen	http://feeds.feedburner.com/ampparit-koti-ja-rakentaminen
-        Pokeri	http://feeds.feedburner.com/ampparit-pokeri
-        Apple	http://feeds.feedburner.com/ampparit-apple
-        Tietoturva	http://feeds.feedburner.com/ampparit-tietoturva
     */
 
+    // Muut syötteet
+    property string section_other : qsTr("Other feeds");
+    property var feeds_specific_others : [
+        { section: section_other, id: "autot-ja-liikenne", name: "Cars and traffic", url: "http://feeds.feedburner.com/ampparit-autot-ja-liikenne", selected: false},
+         { section: section_other, id: "matkailu", name: "Traveling", url: "http://feeds.feedburner.com/ampparit-matkailu", selected: false},
+         { section: section_other, id: "ruoka-ja-juoma", name: "Food and drinks", url: "http://feeds.feedburner.com/ampparit-ruoka-ja-juoma", selected: false},
+         { section: section_other, id: "koti-ja-rakentaminen", name: "Home and building", url: "http://feeds.feedburner.com/ampparit-koti-ja-rakentaminen", selected: false},
+         { section: section_other, id: "apple", name: "Apple", url: "http://feeds.feedburner.com/ampparit-apple", selected: false},
+         { section: section_other, id: "tietoturva", name: "Information security", url: "http://feeds.feedburner.com/ampparit-tietoturva", selected: false},
+         { section: section_other, id: "paakirjoitukset", name: "Editorials", url: "http://feeds.feedburner.com/ampparit-paakirjoitukset", selected: false},
+         { section: section_other, id: "pokeri", name: "Poker", url: "http://feeds.feedburner.com/ampparit-pokeri", selected: false}
+    ];
+
     function loadFeedSettings() {
+        sourcesModel.clear();
+        specificFeedsModel.clear();
+
         // Selecting basic feed if it's selected in settings
         feeds_basic_selected = Storage.readSetting("feeds_basic_selected");
-        if (feeds_basic_selected && feeds_basic_selected != "none") {
-            feeds_basic_news.forEach(function(entry) {
+        if (feeds_basic_selected) {
+            feeds_basic.forEach(function(entry) {
                 if (entry.id === feeds_basic_selected) {
                     sourcesModel.addSource(entry.id, entry.name, entry.url);
                     feeds_basic_selectedName = entry.name;
                 }
             });
         }
+
+        specificFeedsModel.append(feeds_specific_news);
+        specificFeedsModel.append(feeds_specific_sports);
+        specificFeedsModel.append(feeds_specific_entertainment);
+        specificFeedsModel.append(feeds_specific_others);
+
         // Selecting specific feeds if they're selected in settings
-        feeds_specific_news.forEach(function(entry) {
+        for (var i=0; i < specificFeedsModel.count; i++) {
+            var entry = specificFeedsModel.get(i);
             entry.selected = Storage.readSetting(entry.id);
             if (entry.selected) {
                 sourcesModel.addSource(entry.id, entry.name, entry.url)
             }
-        });
+        };
 
-        /*
-        feeds_specific_news.forEach(function(entry) {
-            console.debug(entry.id +"; " + entry.selected)
-        });
-        */
+        //console.log(JSON.stringify(feeds_specific));
 
         settingsLoaded();
     }
@@ -117,9 +129,10 @@ QtObject {
     function saveFeedSettings() {
         Storage.writeSetting("feeds_basic_selected", feeds_basic_selected);
 
-        feeds_specific_news.forEach(function(entry) {
+        for (var i=0; i < specificFeedsModel.count; i++) {
+            var entry = specificFeedsModel.get(i);
             Storage.writeSetting(entry.id, entry.selected);
-        });
+        };
 
         settingsLoaded();
     }

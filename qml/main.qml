@@ -9,6 +9,7 @@ ApplicationWindow {
     property string timeSinceRefresh;
 
     ListModel { id: newsModel }
+    ListModel { id: specificFeedsModel }
 
     SourcesModel {
         id: sourcesModel
@@ -30,7 +31,7 @@ ApplicationWindow {
             //console.debug("SourcesModel.onCompleted")
             settings.loadFeedSettings();
             if (count === 0) {
-                sourcesModel.addSource("kaikki", "Kaikki", "http://feeds.feedburner.com/ampparit-kaikki")
+                sourcesModel.addSource("kaikki", qStr("Kaikki"), "http://feeds.feedburner.com/ampparit-kaikki")
             }
         }
     }
@@ -52,8 +53,8 @@ ApplicationWindow {
         signal abort
     }
 
-    property string selectedSection: "kaikki"
-    property string selectedSectionName: "Kaikki"
+    property string selectedSection: settings.feeds_basic_selected;
+    property string selectedSectionName: settings.feeds_basic_selectedName;
 
     initialPage: Component {
         id: mainPage;

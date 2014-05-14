@@ -1,6 +1,7 @@
 import QtQuick 2.1
 import Sailfish.Silica 1.0
 import QtQuick.XmlListModel 2.0
+import "components/utils.js" as Utils
 
 Page {
     id: mp
@@ -8,8 +9,10 @@ Page {
     property alias contentItem: flickable
 
     onStatusChanged: {
+        //console.log("mp.onStatusChanged")
         if (status == PageStatus.Activating) {
-            timeSinceRefresh = Format.formatDate(feedModel.lastRefresh, Formatter.DurationElapsed);
+            //timeSinceRefresh = Format.formatDate(feedModel.lastRefresh, Formatter.DurationElapsed);
+            timeSinceRefresh = Utils.timeDiff(feedModel.lastRefresh);
         }
     }
 
@@ -60,21 +63,21 @@ Page {
             }
         }
 
+        Label {
+            id: lastRefreshLbl;
+            anchors { top: header.bottom; right: parent.right; }
+            anchors.rightMargin: constants.paddingLarge;
+            font.pixelSize: constants.fontSizeXXSmall;
+            color: constants.colorHighlight;
+            textFormat: Text.PlainText;
+            text: qsTr("Refreshed") + ": " + timeSinceRefresh;
+            visible: timeSinceRefresh != "";
+        }
+
         // The delegate for each section header
         Component {
             id: sectionHeading
             SectionHeader { text: section }
-        }
-
-        Label {
-            id: lastRefreshLbl
-            anchors { top: header.bottom; right: parent.right; }
-            anchors.rightMargin: constants.paddingLarge;
-            font.pixelSize: constants.fontSizeXXSmall
-            color: constants.colorHighlight
-            textFormat: Text.PlainText
-            text: qsTr("Refreshed") + ": " + timeSinceRefresh;
-            visible: timeSinceRefresh != "";
         }
 
         SilicaListView {
@@ -88,7 +91,7 @@ Page {
             clip: true;
 
             ViewPlaceholder {
-                enabled: sourcesModel.count > 0 && !feedModel.busy && newsModel.count === 0
+                enabled: sourcesModel.count > 0 && !feedModel.busy && feedModel.allFeeds.length === 0
                 text: qsTr("Pull down to refresh")
             }
 
@@ -103,7 +106,6 @@ Page {
 
                 opacity: feedModel.busy ? 0.2 : 1
                 enabled: !feedModel.busy
-                clip: true
 
                 width: listView.width
                 spacing: constants.paddingSmall
@@ -112,7 +114,7 @@ Page {
                     id: titleLbl
                     width: parent.width
                     font.pixelSize: constants.fontSizeSmall
-                    color: constants.colorPrimary
+                    color: (read) ? constants.colorSecondary : constants.colorPrimary;
                     textFormat: Text.PlainText
                     wrapMode: Text.Wrap;
                     text: title
@@ -121,6 +123,29 @@ Page {
                         enabled: link !== ""
                         anchors.fill: parent
                         onClicked: {
+                            read = true;
+
+                            // @FIXME: better way to mark as read?
+                            for (var i=0; i < newsModel.count; i++) {
+                                var entry = newsModel.get(i);
+                                if (entry.link === link) {
+                                    entry.read = true;
+                                    break;
+                                }
+                            };
+
+                            for (i=0; i < feedModel.allFeeds.length; i++) {
+                                var feed = feedModel.allFeeds[i];
+                                for (var j=0; j < feed.entries.length; j++) {
+                                    var e = feed.entries[j];
+                                    if (e.link === link) {
+                                        e.read = true;
+                                        break;
+                                    }
+                                }
+                            };
+                            //
+
                             var props = {
                                 "url": link
                             }
@@ -129,6 +154,7 @@ Page {
                     }
                 }
 
+                /*
                 Label {
                     id: updatedLbl
                     width: parent.width
@@ -137,6 +163,7 @@ Page {
                     textFormat: Text.PlainText
                     text: "(" + Format.formatDate(updated, Formatter.DurationElapsed) + ")"
                 }
+                */
 
                 Separator {
                     anchors { left: parent.left; right: parent.right; }
@@ -210,10 +237,10 @@ Page {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-        anchors.margins: Theme.paddingMedium
+        anchors.margins: constants.paddingMedium
         horizontalAlignment: Text.AlignHCenter
-        font.pixelSize: Theme.fontSizeMedium
-        color: Theme.secondaryColor
+        font.pixelSize: constants.fontSizeMedium
+        color: constants.colorHighlight
         truncationMode: TruncationMode.Fade
         text: feedModel.currentlyLoading
     }

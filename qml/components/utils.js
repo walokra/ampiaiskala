@@ -5,8 +5,8 @@
  */
 function timeDiff(datetime) {
     var newsTime = new Date(datetime)
-    var offset = new Date().getTimezoneOffset();
-    newsTime.setMinutes(newsTime.getMinutes() - offset); // apply custom timezone
+    //var offset = new Date().getTimezoneOffset();
+    //newsTime.setMinutes(newsTime.getMinutes() - offset); // apply custom timezone
 
     var diff = new Date().getTime() - newsTime.getTime() // milliseconds
 

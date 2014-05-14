@@ -10,7 +10,7 @@ Panel {
         target: settings
 
         onSettingsLoaded: {
-            filteredFeedRepeater.model = settings.feeds_specific_news;
+            filteredFeedRepeater.model = specificFeedsModel;
         }
     }
 
@@ -41,10 +41,9 @@ Panel {
                 }
 
                 onClicked: {
-                    //console.debug("Showing feed: " + modelData.name);
-                    newsModel.clear()
-                    selectedSection = settings.feeds_basic_selected
-                    selectedSectionName = settings.feeds_basic_selectedName
+                    newsModel.clear();
+                    selectedSection = settings.feeds_basic_selected;
+                    selectedSectionName = settings.feeds_basic_selectedName;
 
                     for(var i in feedModel.allFeeds) {
                         if (feedModel.allFeeds[i].id === selectedSection) {
@@ -61,25 +60,25 @@ Panel {
             Repeater {
                 id: filteredFeedRepeater
                 width: parent.width
-                model: settings.feeds_specific_news
+                model: specificFeedsModel
 
                 delegate: BackgroundItem {
                     id: filteredFeedItem;
-                    visible: modelData.selected;
+                    visible: selected;
 
                     Label {
                         anchors { left: parent.left; right: parent.right; }
                         anchors.verticalCenter: parent.verticalCenter;
-                        text: modelData.name;
+                        text: name;
                         font.pixelSize: constants.fontSizeMedium;
                         color: filteredFeedItem.highlighted ? constants.colorHighlight : constants.colorPrimary;
                     }
 
                     onClicked: {
-                        //console.debug("Showing feed: " + modelData.name);
-                        newsModel.clear()
-                        selectedSection = modelData.id
-                        selectedSectionName = modelData.name
+                        newsModel.clear();
+                        selectedSection = id;
+                        selectedSectionName = name;
+                        //console.debug("Showing feed: " + selectedSection + "; " + selectedSectionName);
 
                         for(var i in feedModel.allFeeds) {
                             if (feedModel.allFeeds[i].id === selectedSection) {
