@@ -11,8 +11,7 @@ Page {
     onStatusChanged: {
         //console.log("mp.onStatusChanged")
         if (status == PageStatus.Activating) {
-            //timeSinceRefresh = Format.formatDate(feedModel.lastRefresh, Formatter.DurationElapsed);
-            timeSinceRefresh = Utils.timeDiff(feedModel.lastRefresh);
+            Utils.updateTimeSince(newsModel);
         }
     }
 
@@ -63,6 +62,7 @@ Page {
             }
         }
 
+        /*
         Label {
             id: lastRefreshLbl;
             anchors { top: header.bottom; right: parent.right; }
@@ -73,6 +73,7 @@ Page {
             text: qsTr("Refreshed") + ": " + timeSinceRefresh;
             visible: timeSinceRefresh != "";
         }
+        */
 
         // The delegate for each section header
         Component {
@@ -83,7 +84,7 @@ Page {
         SilicaListView {
             id: listView
 
-            anchors { top: lastRefreshLbl.bottom; left: parent.left; right: parent.right; bottom: parent.bottom; }
+            anchors { top: header.bottom; left: parent.left; right: parent.right; bottom: parent.bottom; }
             anchors.margins: constants.paddingSmall;
 
             cacheBuffer: 4000;
@@ -123,28 +124,7 @@ Page {
                         enabled: link !== ""
                         anchors.fill: parent
                         onClicked: {
-                            read = true;
-
-                            // @FIXME: better way to mark as read?
-                            for (var i=0; i < newsModel.count; i++) {
-                                var entry = newsModel.get(i);
-                                if (entry.link === link) {
-                                    entry.read = true;
-                                    break;
-                                }
-                            };
-
-                            for (i=0; i < feedModel.allFeeds.length; i++) {
-                                var feed = feedModel.allFeeds[i];
-                                for (var j=0; j < feed.entries.length; j++) {
-                                    var e = feed.entries[j];
-                                    if (e.link === link) {
-                                        e.read = true;
-                                        break;
-                                    }
-                                }
-                            };
-                            //
+                            markAsRead(link);
 
                             var props = {
                                 "url": link
@@ -153,17 +133,6 @@ Page {
                         }
                     }
                 }
-
-                /*
-                Label {
-                    id: updatedLbl
-                    width: parent.width
-                    font.pixelSize: constants.fontSizeXXSmall
-                    color: constants.colorHighlight
-                    textFormat: Text.PlainText
-                    text: "(" + Format.formatDate(updated, Formatter.DurationElapsed) + ")"
-                }
-                */
 
                 Separator {
                     anchors { left: parent.left; right: parent.right; }
@@ -224,6 +193,29 @@ Page {
 
             VerticalScrollDecorator { flickable: flickable }
         }
+    }
+
+    function markAsRead(link) {
+        // @FIXME: better way to mark as read?
+        for (var i=0; i < newsModel.count; i++) {
+            var entry = newsModel.get(i);
+            if (entry.link === link) {
+                entry.read = true;
+                break;
+            }
+        };
+
+        for (i=0; i < feedModel.allFeeds.length; i++) {
+            var feed = feedModel.allFeeds[i];
+            for (var j=0; j < feed.entries.length; j++) {
+                var e = feed.entries[j];
+                if (e.link === link) {
+                    e.read = true;
+                    break;
+                }
+            }
+        };
+        //
     }
 
     BusyIndicator {

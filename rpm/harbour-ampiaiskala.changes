@@ -1,3 +1,7 @@
+* Fri May 16 2014 Marko Wallin <mtw@iki.fi> 0.3.0-1
+- New specific feeds, select feed from left panel, group items by freshness time
+- Marking read links, copy link to clipboard from Web view, update time since refreshed
+
 * Thu May 3 2014 Marko Wallin <mtw@iki.fi> 0.2.0-1
 - Additional news feeds, fixed bug with feed selection and scrolling.
 

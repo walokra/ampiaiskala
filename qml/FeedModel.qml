@@ -110,7 +110,6 @@ Item {
         _sourcesQueue = sources;
         _loadNext();
         lastRefresh = new Date();
-        timeSinceRefresh = Utils.timeDiff(lastRefresh);
     }
 
     /* Aborts loading.

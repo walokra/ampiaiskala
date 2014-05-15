@@ -15,8 +15,8 @@ CoverBackground {
     onStatusChanged: {
         //console.log("cover.onStatusChanged, status=" + status);
         if (status == PageStatus.Deactivating) {
-            console.log("cover deactivating");
-            timeSinceRefresh = Utils.timeDiff(feedModel.lastRefresh);
+            //console.log("cover deactivating");
+            Utils.updateTimeSince(newsModel);
         }
     }
 

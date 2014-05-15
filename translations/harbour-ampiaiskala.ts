@@ -45,9 +45,9 @@
 <context>
     <name>FeedModel</name>
     <message>
-        <location filename="../qml/FeedModel.qml" line="204"/>
-        <location filename="../qml/FeedModel.qml" line="208"/>
-        <location filename="../qml/FeedModel.qml" line="210"/>
+        <location filename="../qml/FeedModel.qml" line="203"/>
+        <location filename="../qml/FeedModel.qml" line="207"/>
+        <location filename="../qml/FeedModel.qml" line="209"/>
         <source>Error with %1:
 %2</source>
         <translation type="unfinished"></translation>
@@ -74,27 +74,22 @@
 <context>
     <name>MainPage</name>
     <message>
-        <location filename="../qml/MainPage.qml" line="44"/>
+        <location filename="../qml/MainPage.qml" line="43"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/MainPage.qml" line="52"/>
+        <location filename="../qml/MainPage.qml" line="51"/>
         <source>Feeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/MainPage.qml" line="59"/>
+        <location filename="../qml/MainPage.qml" line="58"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/MainPage.qml" line="73"/>
-        <source>Refreshed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/MainPage.qml" line="95"/>
+        <location filename="../qml/MainPage.qml" line="96"/>
         <source>Pull down to refresh</source>
         <translation type="unfinished"></translation>
     </message>
@@ -307,6 +302,11 @@
     </message>
     <message>
         <location filename="../qml/WebPage.qml" line="45"/>
+        <source>Copy link to clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/WebPage.qml" line="58"/>
         <source>Open in browser</source>
         <translation type="unfinished"></translation>
     </message>
@@ -314,44 +314,44 @@
 <context>
     <name>utils</name>
     <message>
-        <location filename="../qml/components/utils.js" line="13"/>
+        <location filename="../qml/components/utils.js" line="21"/>
         <source>Now</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/components/utils.js" line="17"/>
+        <location filename="../qml/components/utils.js" line="25"/>
         <source>Just now</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/components/utils.js" line="21"/>
+        <location filename="../qml/components/utils.js" line="29"/>
         <source>&lt; 5 minutes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/components/utils.js" line="23"/>
+        <location filename="../qml/components/utils.js" line="31"/>
         <source>&lt; 15 minutes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/components/utils.js" line="25"/>
+        <location filename="../qml/components/utils.js" line="33"/>
         <source>&lt; 30 minutes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/components/utils.js" line="27"/>
+        <location filename="../qml/components/utils.js" line="35"/>
         <source>&lt; 45 minutes</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
-        <location filename="../qml/components/utils.js" line="31"/>
+        <location filename="../qml/components/utils.js" line="39"/>
         <source>%n hour(s)</source>
         <translation type="unfinished">
             <numerusform></numerusform>
         </translation>
     </message>
     <message>
-        <location filename="../qml/components/utils.js" line="35"/>
+        <location filename="../qml/components/utils.js" line="43"/>
         <source>Yesterday %1</source>
         <translation type="unfinished"></translation>
     </message>
