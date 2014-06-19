@@ -29,7 +29,7 @@ ApplicationWindow {
             //console.debug("SourcesModel.onCompleted")
             settings.loadFeedSettings();
             if (count === 0) {
-                sourcesModel.addSource("kaikki", qStr("Kaikki"), "http://feeds.feedburner.com/ampparit-kaikki")
+                sourcesModel.addSource("kaikki", qsTr("Kaikki"), "http://feeds.feedburner.com/ampparit-kaikki")
             }
         }
     }

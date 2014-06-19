@@ -74,22 +74,22 @@
 <context>
     <name>MainPage</name>
     <message>
-        <location filename="../qml/MainPage.qml" line="43"/>
+        <location filename="../qml/MainPage.qml" line="44"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/MainPage.qml" line="51"/>
+        <location filename="../qml/MainPage.qml" line="52"/>
         <source>Feeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/MainPage.qml" line="58"/>
+        <location filename="../qml/MainPage.qml" line="59"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/MainPage.qml" line="96"/>
+        <location filename="../qml/MainPage.qml" line="97"/>
         <source>Pull down to refresh</source>
         <translation type="unfinished"></translation>
     </message>
@@ -306,8 +306,26 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../qml/WebPage.qml" line="48"/>
+        <source>Link</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/WebPage.qml" line="48"/>
+        <source>copied to clipboard.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../qml/WebPage.qml" line="58"/>
         <source>Open in browser</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>main</name>
+    <message>
+        <location filename="../qml/main.qml" line="32"/>
+        <source>Kaikki</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
