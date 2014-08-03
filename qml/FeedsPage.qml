@@ -15,6 +15,10 @@ Dialog {
 
         onSettingsLoaded: {
             listView.model = specificFeedsModel;
+
+            selectedId = settings.feeds_basic_selected
+            selectedUrl = settings.feeds_basic_selectedUrl
+            selectedName = settings.feeds_basic_selectedName
         }
     }
 
@@ -38,8 +42,6 @@ Dialog {
 
             anchors.leftMargin: constants.paddingMedium
             anchors.rightMargin: constants.paddingMedium
-
-            //SectionHeader { text: qsTr("Basic feed") }
 
             ComboBox {
                 id: feedModeBox
@@ -187,9 +189,6 @@ Dialog {
                 break;
             case settings.feeds_basic[6].id:
                 feedModeBox.currentIndex = 6
-                break;
-            case settings.feeds_basic[7].id:
-                feedModeBox.currentIndex = 7
                 break;
             default:
                 feedModeBox.currentIndex = 1

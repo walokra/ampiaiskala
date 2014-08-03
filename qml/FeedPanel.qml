@@ -46,7 +46,7 @@ Panel {
                     selectedSection = settings.feeds_basic_selected;
                     selectedSectionName = settings.feeds_basic_selectedName;
 
-                    appendToNewsModel(selectedSection);
+                    internal.appendToNewsModel(selectedSection);
                     Utils.updateTimeSince(newsModel);
 
                     //console.log("newsModel.count: " + newsModel.count);
@@ -77,7 +77,7 @@ Panel {
                         selectedSectionName = name;
                         //console.debug("Showing feed: " + selectedSection + "; " + selectedSectionName);
 
-                        appendToNewsModel(selectedSection);
+                        internal.appendToNewsModel(selectedSection);
                         Utils.updateTimeSince(newsModel);
 
                         //console.log("newsModel.count: " + newsModel.count);
@@ -90,11 +90,15 @@ Panel {
         VerticalScrollDecorator { }
     }
 
-    function appendToNewsModel(selectedSection) {
-        for(var i in feedModel.allFeeds) {
-            if (feedModel.allFeeds[i].id === selectedSection) {
-                newsModel.append(feedModel.allFeeds[i].entries)
-                break;
+    QtObject {
+        id: internal
+
+        function appendToNewsModel(selectedSection) {
+            for(var i in feedModel.allFeeds) {
+                if (feedModel.allFeeds[i].id === selectedSection) {
+                    newsModel.append(feedModel.allFeeds[i].entries)
+                    break;
+                }
             }
         }
     }

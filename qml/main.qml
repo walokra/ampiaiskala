@@ -13,25 +13,24 @@ ApplicationWindow {
         id: sourcesModel
 
         onModelChanged: {
-            var sources = [];
+            //console.debug("main.qml: SourcesModel.onModelChanged")
+
+            var sources = []
             for (var i = 0; i < count; i++) {
                 var data = {
                     "id": get(i).id,
                     "name": get(i).name,
                     "url": get(i).url,
                 };
-                sources.push(data);
+                sources.push(data)
             }
-            feedModel.sources = sources;
+            feedModel.sources = sources
         }
 
         Component.onCompleted: {
-            //console.debug("SourcesModel.onCompleted")
             settings.loadFeedSettings();
-            if (count === 0) {
-                sourcesModel.addSource("kaikki", qsTr("Kaikki"), "http://feeds.feedburner.com/ampparit-kaikki")
-            }
         }
+
     }
 
     FeedModel {

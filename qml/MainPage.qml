@@ -10,7 +10,7 @@ Page {
 
     onStatusChanged: {
         //console.log("mp.onStatusChanged")
-        if (status == PageStatus.Activating) {
+        if (status === PageStatus.Activating) {
             Utils.updateTimeSince(newsModel);
         }
     }

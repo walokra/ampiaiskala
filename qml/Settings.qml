@@ -6,9 +6,20 @@ QtObject {
 
     signal settingsLoaded
 
+    onSettingsLoaded: {
+        if (sourcesModel.count === 0) {
+            //console.debug("main.qml: SourcesModel.onCompleted: None selected")
+            sourcesModel.addSource(feeds_basic[0].id, feeds_basic[0].name, feeds_basic[0].url)
+        }
+
+        selectedSection = feeds_basic_selected
+        selectedSectionName = feeds_basic_selectedName
+    }
+
     // Settings page
     property string feeds_basic_selected : "kaikki";
     property string feeds_basic_selectedName : qsTr("All");
+    property string feeds_basic_selectedUrl : "http://feeds.feedburner.com/ampparit-kaikki";
 
     // Ampparit.com feeds
     property var feeds_basic : [
@@ -93,19 +104,32 @@ QtObject {
     ];
 
     function loadFeedSettings() {
+        //console.debug("loadFeedSettings()")
+
         sourcesModel.clear();
         specificFeedsModel.clear();
 
         // Selecting basic feed if it's selected in settings
-        feeds_basic_selected = Storage.readSetting("feeds_basic_selected");
-        if (feeds_basic_selected) {
-            feeds_basic.forEach(function(entry) {
-                if (entry.id === feeds_basic_selected) {
-                    sourcesModel.addSource(entry.id, entry.name, entry.url);
-                    feeds_basic_selectedName = entry.name;
+        Storage.readSetting("feeds_basic_selected",
+            function (selected){
+                feeds_basic_selected = selected
+                if (selected) {
+                    //console.debug("loadFeedSettings() setting selected");
+                    feeds_basic.forEach(function(entry) {
+                        if (entry.id === feeds_basic_selected) {
+                            //console.debug("Added source: " + entry.id)
+                            sourcesModel.addSource(entry.id, entry.name, entry.url)
+                            feeds_basic_selectedName = entry.name
+                            feeds_basic_selectedUrl = entry.url
+                        }
+                    });
+                } else {
+                    //console.debug("loadFeedSettings() setting defaults");
+                    feeds_basic_selected = feeds_basic[0].id
+                    feeds_basic_selectedName = feeds_basic[0].name
                 }
-            });
-        }
+            }
+        );
 
         specificFeedsModel.append(feeds_specific_news);
         specificFeedsModel.append(feeds_specific_sports);
@@ -115,10 +139,14 @@ QtObject {
         // Selecting specific feeds if they're selected in settings
         for (var i=0; i < specificFeedsModel.count; i++) {
             var entry = specificFeedsModel.get(i);
-            entry.selected = Storage.readSetting(entry.id);
-            if (entry.selected) {
-                sourcesModel.addSource(entry.id, entry.name, entry.url)
-            }
+            Storage.readSetting(entry.id,
+                function(selected) {
+                    entry.selected = selected;
+                    if (selected) {
+                        sourcesModel.addSource(entry.id, entry.name, entry.url)
+                    }
+                }
+            );
         };
 
         //console.log(JSON.stringify(feeds_specific));
@@ -136,4 +164,5 @@ QtObject {
 
         settingsLoaded();
     }
+
 }

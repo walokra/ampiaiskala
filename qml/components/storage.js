@@ -59,7 +59,7 @@ function writeSetting(key, value) {
 /**
  Read given setting from database.
 */
-function readSetting(key) {
+function readSetting(key, onSuccess) {
     //console.debug("readSetting(" + key + ")");
 
     var res = "";
@@ -67,21 +67,19 @@ function readSetting(key) {
         var rows = tx.executeSql("SELECT value AS val FROM settings WHERE key=?;", [key]);
 
         if (rows.rows.length !== 1) {
-            res = "";
+            return false;
         } else {
             res = rows.rows.item(0).val;
         }
     });
+    //console.debug("key=" + key + "; value=" + res);
 
     if (res === 'true') {
-        return true;
+        res = true;
     }
     else if (res === 'false') {
-        return false;
-    }
-    else if (!res) {
-        return false;
+        res = false;
     }
 
-    return res;
+    onSuccess(res);
 }
