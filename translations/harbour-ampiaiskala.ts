@@ -37,12 +37,12 @@
 <context>
     <name>CoverPage</name>
     <message>
-        <location filename="../qml/CoverPage.qml" line="43"/>
+        <location filename="../qml/CoverPage.qml" line="40"/>
         <source>Refreshing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/CoverPage.qml" line="99"/>
+        <location filename="../qml/CoverPage.qml" line="96"/>
         <source>Updated</source>
         <translation type="unfinished"></translation>
     </message>
