@@ -37,8 +37,13 @@
 <context>
     <name>CoverPage</name>
     <message>
-        <location filename="../qml/CoverPage.qml" line="35"/>
+        <location filename="../qml/CoverPage.qml" line="43"/>
         <source>Refreshing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qml/CoverPage.qml" line="99"/>
+        <source>Updated</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -56,17 +61,17 @@
 <context>
     <name>FeedsPage</name>
     <message>
-        <location filename="../qml/FeedsPage.qml" line="28"/>
+        <location filename="../qml/FeedsPage.qml" line="32"/>
         <source>Feeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/FeedsPage.qml" line="29"/>
+        <location filename="../qml/FeedsPage.qml" line="33"/>
         <source>Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/FeedsPage.qml" line="49"/>
+        <location filename="../qml/FeedsPage.qml" line="51"/>
         <source>Basic feed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -74,22 +79,22 @@
 <context>
     <name>MainPage</name>
     <message>
-        <location filename="../qml/MainPage.qml" line="44"/>
+        <location filename="../qml/MainPage.qml" line="43"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/MainPage.qml" line="52"/>
+        <location filename="../qml/MainPage.qml" line="51"/>
         <source>Feeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/MainPage.qml" line="59"/>
+        <location filename="../qml/MainPage.qml" line="58"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/MainPage.qml" line="97"/>
+        <location filename="../qml/MainPage.qml" line="96"/>
         <source>Pull down to refresh</source>
         <translation type="unfinished"></translation>
     </message>
@@ -97,198 +102,198 @@
 <context>
     <name>Settings</name>
     <message>
-        <location filename="../qml/Settings.qml" line="11"/>
-        <location filename="../qml/Settings.qml" line="15"/>
+        <location filename="../qml/Settings.qml" line="21"/>
+        <location filename="../qml/Settings.qml" line="26"/>
         <source>All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Settings.qml" line="16"/>
+        <location filename="../qml/Settings.qml" line="27"/>
         <source>News</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Settings.qml" line="17"/>
+        <location filename="../qml/Settings.qml" line="28"/>
         <source>News and entertainment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Settings.qml" line="18"/>
+        <location filename="../qml/Settings.qml" line="29"/>
         <source>News and sports</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Settings.qml" line="19"/>
+        <location filename="../qml/Settings.qml" line="30"/>
         <source>Entertainment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Settings.qml" line="20"/>
+        <location filename="../qml/Settings.qml" line="31"/>
         <source>Sports news</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Settings.qml" line="21"/>
+        <location filename="../qml/Settings.qml" line="32"/>
         <source>Province news</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Settings.qml" line="25"/>
+        <location filename="../qml/Settings.qml" line="36"/>
         <source>Specific news feeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Settings.qml" line="27"/>
+        <location filename="../qml/Settings.qml" line="38"/>
         <source>National</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Settings.qml" line="28"/>
+        <location filename="../qml/Settings.qml" line="39"/>
         <source>World</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Settings.qml" line="29"/>
+        <location filename="../qml/Settings.qml" line="40"/>
         <source>Finance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Settings.qml" line="30"/>
+        <location filename="../qml/Settings.qml" line="41"/>
         <source>IT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Settings.qml" line="31"/>
+        <location filename="../qml/Settings.qml" line="42"/>
         <source>Media</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Settings.qml" line="32"/>
+        <location filename="../qml/Settings.qml" line="43"/>
         <source>Politics</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Settings.qml" line="33"/>
+        <location filename="../qml/Settings.qml" line="44"/>
         <source>Culture</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Settings.qml" line="34"/>
+        <location filename="../qml/Settings.qml" line="45"/>
         <source>Health and well-being</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Settings.qml" line="35"/>
+        <location filename="../qml/Settings.qml" line="46"/>
         <source>Science and research</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Settings.qml" line="36"/>
+        <location filename="../qml/Settings.qml" line="47"/>
         <source>Nature and environment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Settings.qml" line="37"/>
+        <location filename="../qml/Settings.qml" line="48"/>
         <source>Crime and punishment</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Settings.qml" line="41"/>
+        <location filename="../qml/Settings.qml" line="52"/>
         <source>Specific entertainment feeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Settings.qml" line="43"/>
+        <location filename="../qml/Settings.qml" line="54"/>
         <source>Movies</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Settings.qml" line="44"/>
+        <location filename="../qml/Settings.qml" line="55"/>
         <source>Television</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Settings.qml" line="45"/>
+        <location filename="../qml/Settings.qml" line="56"/>
         <source>Music</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Settings.qml" line="46"/>
+        <location filename="../qml/Settings.qml" line="57"/>
         <source>Games</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Settings.qml" line="50"/>
+        <location filename="../qml/Settings.qml" line="61"/>
         <source>Specific sports feeds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Settings.qml" line="52"/>
+        <location filename="../qml/Settings.qml" line="63"/>
         <source>Hockey</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Settings.qml" line="53"/>
+        <location filename="../qml/Settings.qml" line="64"/>
         <source>Football</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Settings.qml" line="54"/>
+        <location filename="../qml/Settings.qml" line="65"/>
         <source>Motorsports</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Settings.qml" line="55"/>
+        <location filename="../qml/Settings.qml" line="66"/>
         <source>Formula 1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Settings.qml" line="56"/>
+        <location filename="../qml/Settings.qml" line="67"/>
         <source>Winter sports</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Settings.qml" line="57"/>
+        <location filename="../qml/Settings.qml" line="68"/>
         <source>Track &amp; field</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Settings.qml" line="58"/>
+        <location filename="../qml/Settings.qml" line="69"/>
         <source>Basketball</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Settings.qml" line="59"/>
+        <location filename="../qml/Settings.qml" line="70"/>
         <source>Volleyball</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Settings.qml" line="60"/>
+        <location filename="../qml/Settings.qml" line="71"/>
         <source>Floorball</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Settings.qml" line="61"/>
+        <location filename="../qml/Settings.qml" line="72"/>
         <source>Golf</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Settings.qml" line="62"/>
+        <location filename="../qml/Settings.qml" line="73"/>
         <source>Horse racing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Settings.qml" line="63"/>
+        <location filename="../qml/Settings.qml" line="74"/>
         <source>Finnish baseball</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Settings.qml" line="64"/>
+        <location filename="../qml/Settings.qml" line="75"/>
         <source>Other sports</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/Settings.qml" line="83"/>
+        <location filename="../qml/Settings.qml" line="94"/>
         <source>Other feeds</source>
         <translation type="unfinished"></translation>
     </message>
@@ -318,14 +323,6 @@
     <message>
         <location filename="../qml/WebPage.qml" line="58"/>
         <source>Open in browser</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>main</name>
-    <message>
-        <location filename="../qml/main.qml" line="32"/>
-        <source>Kaikki</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
