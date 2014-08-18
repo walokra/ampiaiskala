@@ -13,6 +13,10 @@ Item {
 
     // the time of the last refresh
     property variant lastRefresh
+    // section which was refreshed last
+    property string lastSection
+    // seconds between refresh
+    property int refreshTimeout: 30;
 
     // flag indicating that this model is busy
     property bool busy: false
@@ -27,7 +31,7 @@ Item {
 
     property variant _models: [ _atomModel ]
 
-    property variant _sourcesQueue: []
+    property var _sourcesQueue: []
 
     property FeedLoader _feedLoader: FeedLoader {
         property string feedName
@@ -104,12 +108,40 @@ Item {
      */
     function refresh() {
         //console.log("Refreshing model");
-        busy = true;
-        allFeeds = [];
-        newsModel.clear();
-        _sourcesQueue = sources;
-        _loadNext();
-        lastRefresh = new Date();
+
+        var refreshAllowed = true;
+        if (lastRefresh) {
+            var diff = new Date().getTime() - lastRefresh.getTime() // milliseconds
+            diff = diff / 1000;
+            //console.log("refresh, diff=" + diff + " s");
+            if (diff < refreshTimeout && selectedSection === lastSection) {
+                console.log("Timeout between refreshing same section is 30s. Last refresh was " + diff + " ago.");
+                refreshAllowed = false;
+            }
+        }
+
+        if (refreshAllowed) {
+            busy = true;
+            allFeeds = [];
+            newsModel.clear();
+
+            if (selectedSection === "") {
+                selectedSection = "kaikki"
+            }
+
+            _sourcesQueue = [];
+            sources.forEach(function(entry) {
+                if (entry.id.toString() === selectedSection.toString()) {
+                    //console.debug("Adding new entry, " + JSON.stringify(entry))
+                    _sourcesQueue.push(entry);
+                }
+            });
+            //console.log("_sourcesQueue.length=" + _sourcesQueue.length)
+
+            _loadNext()
+            lastRefresh = new Date()
+            lastSection = selectedSection
+        }
     }
 
     /* Aborts loading.
@@ -125,15 +157,15 @@ Item {
      */
     function _loadNext() {
         var queue = _sourcesQueue;
+        //console.debug("_sourcesQueue=" + JSON.stringify(_sourcesQueue))
         if (queue.length > 0) {
             var source = queue.pop();
             var name = source.name;
             var url = source.url;
             var id = source.id;
 
-            var progress = "("+ (sources.length - queue.length) + "/" + sources.length + ")";
-            console.log("Now loading "+ progress +": " + name);
-            currentlyLoading = name + " " + progress;
+            console.log("Now loading : " + name);
+            currentlyLoading = name;
             _feedLoader.feedName = name;
             _feedLoader.source = url;
             _feedLoader.id = id;

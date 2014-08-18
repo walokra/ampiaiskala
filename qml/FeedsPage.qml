@@ -33,53 +33,6 @@ Dialog {
             acceptText: qsTr("Save");
         }
 
-        //contentHeight: contentArea.height + listView.height + 100;
-
-        Column {
-            id: contentArea;
-            anchors { top: header.bottom; left: parent.left; right: parent.right }
-            width: parent.width
-
-            anchors.leftMargin: constants.paddingMedium
-            anchors.rightMargin: constants.paddingMedium
-
-            ComboBox {
-                id: feedModeBox
-                currentIndex: 0
-                width: parent.width
-
-                label: qsTr("Basic feed") + ":"
-
-                menu: ContextMenu {
-                    id: feedMenu
-
-                    Repeater {
-                         width: parent.width
-                         model: settings.feeds_basic
-
-                         delegate: MenuItem {
-                             text: modelData.name
-                             onClicked: {
-                                 //console.log("onClicked: " + index + "; id=" + modelData.id)
-                                 selectedId = modelData.id
-                                 selectedName = modelData.name
-                                 selectedUrl = modelData.url
-                             }
-                         }
-                    }
-                    //onActiveChanged: {
-                    //    console.log("onActiveChanged, index: " + feedModeBox.currentIndex)
-                    //}
-                }
-                onCurrentIndexChanged: {
-                    selectedId = settings.feeds_basic[currentIndex].id
-                    selectedName = settings.feeds_basic[currentIndex].name
-                    selectedUrl = settings.feeds_basic[currentIndex].url
-                    //console.debug("onCurrentIndexChanged("+ currentIndex +"): selectedId= " + selectedId + "; selectedUrl=" + selectedUrl)
-                }
-            }
-        }
-
         // The delegate for each section header
         Component {
             id: sectionHeading
@@ -89,7 +42,7 @@ Dialog {
         SilicaListView {
             id: listView
 
-            anchors { top: contentArea.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
+            anchors { top: header.bottom; left: parent.left; right: parent.right; bottom: parent.bottom }
             anchors.margins: constants.paddingSmall;
             height: childrenRect.height;
 
@@ -111,7 +64,8 @@ Dialog {
                 TextSwitch {
                     id: txtSwitch
                     text: name
-                    checked: selected
+                    enabled: (id === "kaikki") ? false : true
+                    checked: (id === "kaikki") ? true : selected
                     onCheckedChanged: {
                         //console.debug("onCheckedChanged, id=" + modelData.id)
                         checked ? addFeed(id) : removeFeed(id);
@@ -166,34 +120,7 @@ Dialog {
     }
 
     Component.onCompleted: {
-        //console.debug("FeedsPage.onCompleted, feeds_basic_selected=" + settings.feeds_basic_selected)
-        // Setting the current value for combobox
-        switch (settings.feeds_basic_selected) {
-            case settings.feeds_basic[0].id:
-                feedModeBox.currentIndex = 0
-                break;
-            case settings.feeds_basic[1].id:
-                feedModeBox.currentIndex = 1
-                break;
-            case settings.feeds_basic[2].id:
-                feedModeBox.currentIndex = 2
-                break;
-            case settings.feeds_basic[3].id:
-                feedModeBox.currentIndex = 3
-                break;
-            case settings.feeds_basic[4].id:
-                feedModeBox.currentIndex = 4
-                break;
-            case settings.feeds_basic[5].id:
-                feedModeBox.currentIndex = 5
-                break;
-            case settings.feeds_basic[6].id:
-                feedModeBox.currentIndex = 6
-                break;
-            default:
-                feedModeBox.currentIndex = 1
-        }
-        //console.debug("feedModeBox.currentIndex=" + feedModeBox.currentIndex)
+
     }
 
 }

@@ -5,8 +5,11 @@ QtObject {
     id: settings;
 
     signal settingsLoaded
+    signal settingsChanged
 
     onSettingsLoaded: {
+        //console.debug("settings.onSettingsLoaded")
+
         if (sourcesModel.count === 0) {
             //console.debug("main.qml: SourcesModel.onCompleted: None selected")
             sourcesModel.addSource(feeds_basic[0].id, feeds_basic[0].name, feeds_basic[0].url)
@@ -14,6 +17,8 @@ QtObject {
 
         selectedSection = feeds_basic_selected
         selectedSectionName = feeds_basic_selectedName
+
+        feedModel.refresh()
     }
 
     // Settings page
@@ -22,14 +27,15 @@ QtObject {
     property string feeds_basic_selectedUrl : "http://feeds.feedburner.com/ampparit-kaikki";
 
     // Ampparit.com feeds
+    property string section_basic : qsTr("Basic news feeds");
     property var feeds_basic : [
-        {id: "kaikki", name: qsTr("All"), url: "http://feeds.feedburner.com/ampparit-kaikki"},
-        {id: "uutiset", name: qsTr("News"), url: "http://feeds.feedburner.com/ampparit-uutiset"},
-        {id: "uutiset-viihde", name: qsTr("News and entertainment"), url: "http://feeds.feedburner.com/ampparit-uutiset-viihde"},
-        {id: "uutiset-urheilu", name: qsTr("News and sports"), url: "http://feeds.feedburner.com/ampparit-uutiset-urheilu"},
-        {id: "viihde", name: qsTr("Entertainment"), url: "http://feeds.feedburner.com/ampparit-viihde"},
-        {id: "urheilu", name: qsTr("Sports news"), url: "http://feeds.feedburner.com/ampparit-urheilu"},
-        {id: "maakunnat", name: qsTr("Province news"), url: "http://feeds.feedburner.com/ampparit-maakunnat"}
+        { section: section_basic, id: "kaikki", name: qsTr("All"), url: "http://feeds.feedburner.com/ampparit-kaikki", selected: true },
+        { section: section_basic, id: "uutiset", name: qsTr("News"), url: "http://feeds.feedburner.com/ampparit-uutiset", selected: false },
+        { section: section_basic, id: "uutiset-viihde", name: qsTr("News and entertainment"), url: "http://feeds.feedburner.com/ampparit-uutiset-viihde", selected: false },
+        { section: section_basic, id: "uutiset-urheilu", name: qsTr("News and sports"), url: "http://feeds.feedburner.com/ampparit-uutiset-urheilu", selected: false },
+        { section: section_basic, id: "viihde", name: qsTr("Entertainment"), url: "http://feeds.feedburner.com/ampparit-viihde", selected: false },
+        { section: section_basic, id: "urheilu", name: qsTr("Sports news"), url: "http://feeds.feedburner.com/ampparit-urheilu", selected: false },
+        { section: section_basic, id: "maakunnat", name: qsTr("Province news"), url: "http://feeds.feedburner.com/ampparit-maakunnat", selected: false }
     ];
 
     // Tarkemmat uutissyötteet
@@ -106,31 +112,13 @@ QtObject {
     function loadFeedSettings() {
         //console.debug("loadFeedSettings()")
 
-        sourcesModel.clear();
-        specificFeedsModel.clear();
+        sourcesModel.clear()
+        specificFeedsModel.clear()
 
-        // Selecting basic feed if it's selected in settings
-        Storage.readSetting("feeds_basic_selected",
-            function (selected){
-                feeds_basic_selected = selected
-                if (selected) {
-                    //console.debug("loadFeedSettings() setting selected");
-                    feeds_basic.forEach(function(entry) {
-                        if (entry.id === feeds_basic_selected) {
-                            //console.debug("Added source: " + entry.id)
-                            sourcesModel.addSource(entry.id, entry.name, entry.url)
-                            feeds_basic_selectedName = entry.name
-                            feeds_basic_selectedUrl = entry.url
-                        }
-                    });
-                } else {
-                    //console.debug("loadFeedSettings() setting defaults");
-                    feeds_basic_selected = feeds_basic[0].id
-                    feeds_basic_selectedName = feeds_basic[0].name
-                }
-            }
-        );
+        // Adding All as it's always selected
+        sourcesModel.addSource(feeds_basic[0].id, feeds_basic[0].name, feeds_basic[0].url)
 
+        specificFeedsModel.append(feeds_basic);
         specificFeedsModel.append(feeds_specific_news);
         specificFeedsModel.append(feeds_specific_sports);
         specificFeedsModel.append(feeds_specific_entertainment);
@@ -142,7 +130,8 @@ QtObject {
             Storage.readSetting(entry.id,
                 function(selected) {
                     entry.selected = selected;
-                    if (selected) {
+                    if (selected && entry.id.toString() !== "kaikki") {
+                        //console.debug("Adding feed=" + entry.id);
                         sourcesModel.addSource(entry.id, entry.name, entry.url)
                     }
                 }
@@ -162,7 +151,7 @@ QtObject {
             Storage.writeSetting(entry.id, entry.selected);
         };
 
-        settingsLoaded();
+        settingsChanged();
     }
 
 }

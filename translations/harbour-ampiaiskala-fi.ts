@@ -44,7 +44,7 @@
     <message>
         <source>Error with %1:
 %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Virhe %1: %2</translation>
     </message>
 </context>
 <context>
@@ -56,10 +56,6 @@
     <message>
         <source>Save</source>
         <translation>Tallenna</translation>
-    </message>
-    <message>
-        <source>Basic feed</source>
-        <translation>Perussyöte</translation>
     </message>
 </context>
 <context>
@@ -80,17 +76,9 @@
         <source>Pull down to refresh</source>
         <translation>Vedä alas päivittääksesi</translation>
     </message>
-    <message>
-        <source>Refreshed</source>
-        <translation type="obsolete">Päivitetty</translation>
-    </message>
 </context>
 <context>
     <name>Settings</name>
-    <message>
-        <source>None selected</source>
-        <translation type="obsolete">Ei valittu</translation>
-    </message>
     <message>
         <source>All</source>
         <translation>Kaikki</translation>
@@ -246,6 +234,10 @@
     <message>
         <source>Other feeds</source>
         <translation>Muut syötteet</translation>
+    </message>
+    <message>
+        <source>Basic news feeds</source>
+        <translation>Perussyötteet</translation>
     </message>
 </context>
 <context>
