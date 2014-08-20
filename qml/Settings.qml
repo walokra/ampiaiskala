@@ -8,10 +8,7 @@ QtObject {
     signal settingsChanged
 
     onSettingsLoaded: {
-        //console.debug("settings.onSettingsLoaded")
-
         if (sourcesModel.count === 0) {
-            //console.debug("main.qml: SourcesModel.onCompleted: None selected")
             sourcesModel.addSource(feeds_basic[0].id, feeds_basic[0].name, feeds_basic[0].url)
         }
 

@@ -38,7 +38,6 @@ Item {
         property string id
 
         onSuccess: {
-            //console.debug("_feedLoader.onSuccess")
             switch (type) {
                 case FeedLoader.Atom:
                     _atomModel.xml = "";
@@ -61,7 +60,6 @@ Item {
         property int index
 
         function load(loadModel) {
-            //console.debug("_itemLoader.load")
             model = loadModel;
             index = 0;
             start();
@@ -71,7 +69,6 @@ Item {
         repeat: true
 
         onTriggered: {
-            //console.debug("_itemLoader.onTriggered")
             for (var end = index + 2; index < end && index < model.count; index++) {
                 wrapper._loadItem(model, index);
                 index++;
@@ -94,7 +91,6 @@ Item {
 
     property AtomModel _atomModel: AtomModel {
         onStatusChanged: {
-            //console.debug("AtomModel.status = " + status);
             if (status === XmlListModel.Error) {
                 _handleError(errorString());
             } else if (status === XmlListModel.Ready) {
@@ -107,13 +103,10 @@ Item {
      * Clears and reloads the model from the current sources.
      */
     function refresh() {
-        //console.log("Refreshing model");
-
         var refreshAllowed = true;
         if (lastRefresh) {
             var diff = new Date().getTime() - lastRefresh.getTime() // milliseconds
             diff = diff / 1000;
-            //console.log("refresh, diff=" + diff + " s");
             if (diff < refreshTimeout && selectedSection === lastSection) {
                 console.log("Timeout between refreshing same section is 30s. Last refresh was " + diff + " ago.");
                 refreshAllowed = false;
@@ -132,11 +125,9 @@ Item {
             _sourcesQueue = [];
             sources.forEach(function(entry) {
                 if (entry.id.toString() === selectedSection.toString()) {
-                    //console.debug("Adding new entry, " + JSON.stringify(entry))
                     _sourcesQueue.push(entry);
                 }
             });
-            //console.log("_sourcesQueue.length=" + _sourcesQueue.length)
 
             _loadNext()
             lastRefresh = new Date()
@@ -157,7 +148,6 @@ Item {
      */
     function _loadNext() {
         var queue = _sourcesQueue;
-        //console.debug("_sourcesQueue=" + JSON.stringify(_sourcesQueue))
         if (queue.length > 0) {
             var source = queue.pop();
             var name = source.name;
@@ -172,8 +162,6 @@ Item {
 
             _sourcesQueue = queue;
         } else {
-           //console.log(JSON.stringify(allFeeds));
-
             for(var i in allFeeds) {
                if (allFeeds[i].id === selectedSection) {
                    newsModel.append(allFeeds[i].entries)
@@ -191,10 +179,6 @@ Item {
      */
     function _loadItem(model, i) {
         var item = _createItem(model.get(i));
-
-        //item["source"] = "" + _feedLoader.source; // convert to string
-        //item["date"] = item.dateString !== "" ? new Date(item.dateString) : new Date();
-        //item["name"] = _feedLoader.feedName;
 
         _items.push(item);
     }
@@ -220,7 +204,6 @@ Item {
             item[key] = obj[key];
         }
         item["timeSince"] = Utils.timeDiff(obj["updated"]);
-        //item["timeSince"] = Format.formatDate(obj["updated"], Formatter.DurationElapsed);
         item["read"] = false;
 
         return item;

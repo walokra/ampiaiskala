@@ -138,7 +138,6 @@ ApplicationWindow {
         function showText(text) {
             infoLabel.text = text;
             opacity = 0.9;
-            //console.log("infoBanner: " + text);
             closeTimer.restart();
         }
 
@@ -146,7 +145,6 @@ ApplicationWindow {
             if (text) {
                 infoLabel.text = text;
                 opacity = 0.9;
-                //console.log("infoBanner: " + text);
             }
         }
 
@@ -165,6 +163,5 @@ ApplicationWindow {
     }
 
     Component.onCompleted: {
-        //console.debug("main.onCompleted")
     }
 }

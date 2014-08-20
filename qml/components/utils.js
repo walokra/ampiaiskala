@@ -1,7 +1,6 @@
 .pragma library
 
 function updateTimeSince(model) {
-    //console.log("updateTimeSince, model.count=" + model.count);
     for (var i=0; i < model.count; i++) {
         var entry = model.get(i);
         entry.timeSince = timeDiff(entry.updated);
@@ -13,8 +12,6 @@ function updateTimeSince(model) {
  */
 function timeDiff(datetime) {
     var newsTime = new Date(datetime)
-    //var offset = new Date().getTimezoneOffset();
-    //newsTime.setMinutes(newsTime.getMinutes() - offset); // apply custom timezone
 
     var diff = new Date().getTime() - newsTime.getTime() // milliseconds
 

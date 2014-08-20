@@ -62,7 +62,6 @@ Panel {
 
                         feedModel.refresh();
 
-                        //console.log("newsModel.count: " + newsModel.count);
                         viewer.hidePanel();
                     }
                 }

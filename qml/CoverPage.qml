@@ -13,10 +13,7 @@ CoverBackground {
     }
 
     onStatusChanged: {
-        //console.log("cover.onStatusChanged, status=" + status);
-
         if (status == PageStatus.Deactivating) {
-            //console.log("cover deactivating");
             Utils.updateTimeSince(newsModel);
         }
     }
@@ -58,7 +55,6 @@ CoverBackground {
             id: coverNewsList
             width: parent.width;
             anchors { top: parent.top; left: parent.left; right: parent.right; bottom: lastUpdateLbl.top }
-            //height: childrenRect.height
             model: newsModel
 
             delegate: Item {

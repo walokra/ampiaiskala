@@ -67,7 +67,6 @@ Dialog {
                     enabled: (id === "kaikki") ? false : true
                     checked: (id === "kaikki") ? true : selected
                     onCheckedChanged: {
-                        //console.debug("onCheckedChanged, id=" + modelData.id)
                         checked ? addFeed(id) : removeFeed(id);
                     }
                 }
@@ -79,7 +78,6 @@ Dialog {
 
     function addFeed(id) {
         //console.debug("addFeed: " + id)
-        //settings.feeds_specific.forEach(function(entry) {
         for (var i=0; i < specificFeedsModel.count; i++) {
             var entry = specificFeedsModel.get(i);
             if (entry.id === id) {
@@ -111,7 +109,6 @@ Dialog {
         for (var i=0; i < specificFeedsModel.count; i++) {
             var entry = specificFeedsModel.get(i);
             if (entry.selected === true) {
-                //console.debug("specific selected, " + entry.id + "; "+ entry.selected)
                 sourcesModel.addSource(entry.id, entry.name, entry.url)
             }
         };

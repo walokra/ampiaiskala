@@ -36,7 +36,6 @@ Page {
 
                     onClicked: {
                         root.backNavigation = true;
-                        //pageStack.navigateBack(PageStackAction.Animated);
                         pageStack.pop(PageStackAction.Animated);
                     }
                 }
