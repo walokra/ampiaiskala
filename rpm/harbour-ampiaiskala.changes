@@ -1,5 +1,8 @@
-* Thu Aug 23 2014 Marko Wallin <mtw@iki.fi> 0.5.1-1
+* Thu Aug 20 2014 Marko Wallin <mtw@iki.fi> 0.5.1-1
 Fixing duplicate scroll icons.
+Minor UI adjustments.
+Fix setting default feed if 1st time use.
+Don't clear feeds if we don't refresh.
 
 * Mon Aug 18 2014 Marko Wallin <mtw@iki.fi> 0.5.0-1
 Changed how feeds are loaded. Only one at a time which makes the app more responsive.
