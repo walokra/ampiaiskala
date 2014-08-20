@@ -96,7 +96,11 @@ Page {
                 enabled: !feedModel.busy
 
                 width: listView.width
-                spacing: constants.paddingSmall
+                anchors { left: parent.left; right: parent.right; }
+
+                spacing: constants.paddingMedium
+                height: childrenRect.height + constants.paddingLarge;
+                anchors.bottomMargin: constants.paddingMedium;
 
                 Label {
                     id: titleLbl
@@ -119,11 +123,6 @@ Page {
                             pageStack.push(Qt.resolvedUrl("WebPage.qml"), props);
                         }
                     }
-                }
-
-                Separator {
-                    anchors { left: parent.left; right: parent.right; }
-                    color: constants.colorSecondary;
                 }
             }
 
