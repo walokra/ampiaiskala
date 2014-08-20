@@ -7,9 +7,9 @@ Page {
     id: mp
 
     property alias contentItem: flickable
+    property bool hasQuickScroll: listView.hasOwnProperty("quickScroll") || listView.quickScroll
 
     onStatusChanged: {
-        //console.log("mp.onStatusChanged")
         if (status === PageStatus.Activating) {
             Utils.updateTimeSince(newsModel);
         }
@@ -61,19 +61,6 @@ Page {
                 }
             }
         }
-
-        /*
-        Label {
-            id: lastRefreshLbl;
-            anchors { top: header.bottom; right: parent.right; }
-            anchors.rightMargin: constants.paddingLarge;
-            font.pixelSize: constants.fontSizeXXSmall;
-            color: constants.colorHighlight;
-            textFormat: Text.PlainText;
-            text: qsTr("Refreshed") + ": " + timeSinceRefresh;
-            visible: timeSinceRefresh != "";
-        }
-        */
 
         // The delegate for each section header
         Component {
@@ -151,7 +138,7 @@ Page {
 
             // to top button
             Rectangle {
-                visible: opacity > 0;
+                visible: !hasQuickScroll && opacity > 0;
                 width: 64;
                 height: 64;
                 anchors { top: listView.top; right: listView.right; margins: Theme.paddingLarge; }
@@ -172,7 +159,7 @@ Page {
 
             // to bottom button
             Rectangle {
-                visible: opacity > 0;
+                visible: !hasQuickScroll && opacity > 0;
                 width: 64;
                 height: 64;
                 anchors { bottom: listView.bottom; right: listView.right; margins: constants.paddingLarge; }
@@ -202,17 +189,6 @@ Page {
             if (entry.link === link) {
                 entry.read = true;
                 break;
-            }
-        };
-
-        for (i=0; i < feedModel.allFeeds.length; i++) {
-            var feed = feedModel.allFeeds[i];
-            for (var j=0; j < feed.entries.length; j++) {
-                var e = feed.entries[j];
-                if (e.link === link) {
-                    e.read = true;
-                    break;
-                }
             }
         };
         //
