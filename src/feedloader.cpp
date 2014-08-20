@@ -44,10 +44,12 @@ FeedLoader::FeedType FeedLoader::type() const {
 void FeedLoader::slotGotReply(QNetworkReply* reply) {
     //int httpCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
 
+    /*
     qDebug() << "Receiving"
              << reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt()
              << reply->request().url();
     qDebug() << reply->rawHeaderPairs();
+    */
 
     // handle redirections
     QVariant redirectUrl = reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
@@ -76,7 +78,7 @@ void FeedLoader::slotGotReply(QNetworkReply* reply) {
 
     switch (reply->error()) {
         case QNetworkReply::NoError: {
-            qDebug() << "parsing now";
+            //qDebug() << "parsing now";
 
             // convert from encoding to UTF-8
             QDomDocument doc;
@@ -93,7 +95,7 @@ void FeedLoader::slotGotReply(QNetworkReply* reply) {
 
             // force UTF-8 for encoding
             feedData = "<?xml version='1.0' encoding='UTF-8'?>" + data;
-            qDebug() << feedData.size() << "bytes";
+            //qDebug() << feedData.size() << "bytes";
             //qDebug() << feedData.left(1024);
             emit dataChanged();
             emit success();
