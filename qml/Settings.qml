@@ -21,7 +21,6 @@ QtObject {
     // Settings page
     property string feeds_basic_selected : "kaikki";
     property string feeds_basic_selectedName : qsTr("All");
-    property string feeds_basic_selectedUrl : "http://feeds.feedburner.com/ampparit-kaikki";
 
     // Ampparit.com feeds
     property string section_basic : qsTr("Basic news feeds");
@@ -114,21 +113,21 @@ QtObject {
 
         // Adding All as it's always selected
         sourcesModel.addSource(feeds_basic[0].id, feeds_basic[0].name, feeds_basic[0].url)
+        Storage.writeSetting("kaikki", true)
 
-        specificFeedsModel.append(feeds_basic);
-        specificFeedsModel.append(feeds_specific_news);
-        specificFeedsModel.append(feeds_specific_sports);
-        specificFeedsModel.append(feeds_specific_entertainment);
-        specificFeedsModel.append(feeds_specific_others);
+        specificFeedsModel.append(feeds_basic)
+        specificFeedsModel.append(feeds_specific_news)
+        specificFeedsModel.append(feeds_specific_sports)
+        specificFeedsModel.append(feeds_specific_entertainment)
+        specificFeedsModel.append(feeds_specific_others)
 
         // Selecting specific feeds if they're selected in settings
         for (var i=0; i < specificFeedsModel.count; i++) {
-            var entry = specificFeedsModel.get(i);
+            var entry = specificFeedsModel.get(i)
             Storage.readSetting(entry.id,
                 function(selected) {
                     entry.selected = selected;
                     if (selected && entry.id.toString() !== "kaikki") {
-                        //console.debug("Adding feed=" + entry.id);
                         sourcesModel.addSource(entry.id, entry.name, entry.url)
                     }
                 }
@@ -141,8 +140,6 @@ QtObject {
     }
 
     function saveFeedSettings() {
-        Storage.writeSetting("feeds_basic_selected", feeds_basic_selected);
-
         for (var i=0; i < specificFeedsModel.count; i++) {
             var entry = specificFeedsModel.get(i);
             Storage.writeSetting(entry.id, entry.selected);

@@ -55,7 +55,6 @@ Panel {
                     }
 
                     onClicked: {
-                        newsModel.clear();
                         selectedSection = id;
                         selectedSectionName = name;
                         //console.debug("Showing feed: " + selectedSection + "; " + selectedSectionName);

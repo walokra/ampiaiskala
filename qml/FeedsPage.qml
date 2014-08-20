@@ -6,19 +6,11 @@ Dialog {
 
     allowedOrientations: Orientation.All
 
-    property string selectedId : ""
-    property string selectedUrl : ""
-    property string selectedName : ""
-
     Connections {
         target: settings
 
         onSettingsLoaded: {
-            listView.model = specificFeedsModel;
-
-            selectedId = settings.feeds_basic_selected
-            selectedUrl = settings.feeds_basic_selectedUrl
-            selectedName = settings.feeds_basic_selectedName
+            listView.model = specificFeedsModel
         }
     }
 
@@ -98,12 +90,6 @@ Dialog {
 
     onAccepted: {
         sourcesModel.clear();
-
-        if (selectedId && selectedId != "none") {
-            settings.feeds_basic_selected = selectedId;
-            sourcesModel.addSource(selectedId, selectedName, selectedUrl);
-            settings.feeds_basic_selectedName = selectedName;
-        }
 
         // Check which specific feeds are selected and add them to source
         for (var i=0; i < specificFeedsModel.count; i++) {
