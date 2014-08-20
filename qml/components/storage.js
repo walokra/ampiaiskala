@@ -2,17 +2,21 @@
 .import QtQuick.LocalStorage 2.0 as LS
 
 var identifier = "Ampiaiskala";
-var version = "1.0";
 var description = "Ampiaiskala database";
+
+var QUERY = {
+    CREATE_SETTINGS_TABLE: 'CREATE TABLE IF NOT EXISTS settings(key TEXT PRIMARY KEY, value TEXT);'
+}
 
 /**
   Open app's database, create it if not exists.
 */
-var db = LS.LocalStorage.openDatabaseSync(identifier, version, description, 10240);
-db.transaction(function(tx) {
-        tx.executeSql("CREATE TABLE IF NOT EXISTS settings(key TEXT PRIMARY KEY, value TEXT);");
-    }
-);
+var db = LS.LocalStorage.openDatabaseSync(identifier, "", description, 10240, function(db) {
+    db.changeVersion(db.version, "1.0", function(tx) {
+        // Create settings table (key, value)
+        tx.executeSql(QUERY.CREATE_SETTINGS_TABLE);
+    });
+});
 
 /**
   Read all settings.
@@ -30,7 +34,7 @@ function readFeedSettings() {
             } else {
                 res[rs.rows.item(i).key] = rs.rows.item(i).value
             }
-            console.log("key=" + rs.rows.item(i).key + "; value=" + rs.rows.item(i).value);
+            //console.log("key=" + rs.rows.item(i).key + "; value=" + rs.rows.item(i).value);
         }
     });
     return res;
@@ -60,14 +64,13 @@ function writeSetting(key, value) {
  Read given setting from database.
 */
 function readSetting(key, onSuccess) {
-    //console.debug("readSetting(" + key + ")");
 
     var res = "";
     db.readTransaction(function(tx) {
         var rows = tx.executeSql("SELECT value AS val FROM settings WHERE key=?;", [key]);
 
         if (rows.rows.length !== 1) {
-            return false;
+            res = false;
         } else {
             res = rows.rows.item(0).val;
         }
