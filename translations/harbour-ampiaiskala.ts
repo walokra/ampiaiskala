@@ -301,27 +301,27 @@
 <context>
     <name>WebPage</name>
     <message>
-        <location filename="../qml/WebPage.qml" line="35"/>
+        <location filename="../qml/WebPage.qml" line="38"/>
         <source>Close web view</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/WebPage.qml" line="44"/>
+        <location filename="../qml/WebPage.qml" line="47"/>
         <source>Copy link to clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/WebPage.qml" line="47"/>
+        <location filename="../qml/WebPage.qml" line="50"/>
         <source>Link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/WebPage.qml" line="47"/>
+        <location filename="../qml/WebPage.qml" line="50"/>
         <source>copied to clipboard.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qml/WebPage.qml" line="57"/>
+        <location filename="../qml/WebPage.qml" line="55"/>
         <source>Open in browser</source>
         <translation type="unfinished"></translation>
     </message>
