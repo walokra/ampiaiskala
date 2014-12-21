@@ -1,3 +1,6 @@
+* Sun Dec 21 2014 Marko Wallin <mtw@iki.fi> 0.5.2-1
+Fix Qt 5.2 WebView chokes on caches from older Qt versions.
+
 * Thu Aug 20 2014 Marko Wallin <mtw@iki.fi> 0.5.1-1
 Fixing duplicate scroll icons.
 Minor UI adjustments.
