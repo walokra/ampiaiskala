@@ -3,6 +3,7 @@ import Sailfish.Silica 1.0
 
 Page {
     id: root
+    objectName: "WebPage"
 
     property string url
 
@@ -16,6 +17,8 @@ Page {
     allowedOrientations: Orientation.All
 
     Loader {
+        id: loader
+
         anchors.fill: parent
         sourceComponent: parent.status === PageStatus.Active ? webComponent : undefined
     }
@@ -43,14 +46,9 @@ Page {
                 MenuItem {
                     text: qsTr("Copy link to clipboard");
                     onClicked: {
-                        textArea.text = url; textArea.selectAll(); textArea.copy();
-                        infoBanner.showText(qsTr("Link") + " " + textArea.text + " " + qsTr("copied to clipboard."));
+                        Clipboard.text = url;
+                        infoBanner.showText(qsTr("Link") + " " + Clipboard.text + " " + qsTr("copied to clipboard."));
                     }
-                }
-
-                TextArea {
-                    id: textArea;
-                    visible: false;
                 }
 
                 MenuItem {
@@ -66,5 +64,10 @@ Page {
         }
     }
 
+    BusyIndicator {
+        running: loader.item ? loader.item.loading : false
+        anchors.centerIn: parent
+        size: BusyIndicatorSize.Large
+    }
 
 }
