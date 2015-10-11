@@ -20,12 +20,13 @@ License:    LICENSE
 URL:        http://ruleoftech.com/lab/ampiaiskala
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  harbour-ampiaiskala.yaml
-Requires:   sailfishsilica-qt5
+Requires:   sailfishsilica-qt5 >= 0.10.9
 Requires:   qt5-qtdeclarative-import-xmllistmodel
-BuildRequires:  pkgconfig(sailfishapp)
+BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
+BuildRequires:  pkgconfig(Qt5Xml)
 BuildRequires:  desktop-file-utils
 
 %description
@@ -65,7 +66,7 @@ desktop-file-install --delete-original       \
 
 %files
 %defattr(-,root,root,-)
-%defattr(0644,root,root,-)
+%defattr(0644,root,root,755)
 %attr(0755,root,root) %{_bindir}
 %{_datadir}/%{name}
 %{_datadir}/%{name}/qml
